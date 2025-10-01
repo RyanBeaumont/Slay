@@ -1,0 +1,14 @@
+STEPS TO CREATE NEW CLOTHING
+1) All pieces in one photoshop group
+2) Skin each piece
+3) Layer = characters
+Sorting order
+LArm - 2
+LLeg - 4
+Bottom - 5
+Torso - 6
+RLeg - 8
+RArm - 10
+Head - 12
+4) Sprite Skin AutoUpdate = true, enabled = false
+5) Add to registry

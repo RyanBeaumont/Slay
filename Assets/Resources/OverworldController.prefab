@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3308444441307719381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810132942836939652}
+  - component: {fileID: 5487924770278667358}
+  m_Layer: 0
+  m_Name: OverworldController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1810132942836939652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3308444441307719381}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.124560446, y: 0.0062206984, z: 0.5294944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5487924770278667358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3308444441307719381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316bf72acb107d64fb4f1253cb139cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentScene: 
+  yourTeam:
+  - index: 0
+    name: Elladonna
+    level: 1
+    xp: 0
+    equippedOutfit:
+      outfit: 000000000100000002000000
+      colors:
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      name: Noob Outfit
+      damageTaken: 0
+      spells: []
+    attackPoints: 0
+    defensePoints: 0
+    fashionPoints: 0
+    unassignedPoints: 0
+  - index: 1
+    name: Dara
+    level: 1
+    xp: 75
+    equippedOutfit:
+      outfit: 000000000100000002000000
+      colors:
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      name: Noob Outfit
+      damageTaken: 0
+      spells: []
+    attackPoints: 0
+    defensePoints: 0
+    fashionPoints: 0
+    unassignedPoints: 0
+  yourOutfits:
+  - outfit: 0200000008000000
+    colors:
+    - {r: 1, g: 0, b: 0.69640875, a: 1}
+    - {r: 0, g: 0, b: 0, a: 1}
+    name: BABS
+    damageTaken: 0
+    spells: []
+  - outfit: 0500000007000000
+    colors:
+    - {r: 1, g: 0.7533275, b: 0, a: 1}
+    - {r: 1, g: 0.8965092, b: 0, a: 1}
+    name: Outfit Two
+    damageTaken: 0
+    spells: []
+  yourDiscard: []
+  yourClothes: 000000000100000002000000
+  playerPrefab: {fileID: 6394521066591339663, guid: d8d5f7f9442eaea4191eee3dc658451d, type: 3}
+  playerMaterial: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  spawnPointIndex: 0
+  playerPosition: {x: 0, y: 0, z: 0}
+  hp: 20
+  xpToLevelUp: 100
+  xpPerLevelMultiplier: 25
+  cash: 0
+  faces:
+  - {fileID: 4605856874367001874, guid: 91fdb963e52f6e240bb7af522cc5329a, type: 3}
+  - {fileID: -8882725313917085733, guid: 32b85900f806e244d878fd3014812ae7, type: 3}
+  - {fileID: 2226667732971601922, guid: 32b85900f806e244d878fd3014812ae7, type: 3}
+  armor: 6
