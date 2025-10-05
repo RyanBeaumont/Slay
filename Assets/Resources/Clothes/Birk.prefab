@@ -49,13 +49,15 @@ MonoBehaviour:
   stats:
     name: Borkenstorks
     description: They stork their jorts when I stomp my Borks
-    abilityDescription: 
-    hp: 1
+    abilityDescription: Each turn, throw the Borks with perfect accuracy
+    hp: 0
     damage: 0
     armor: 0
     bonus: 0
-    cost: 1
-    attackTriggers: []
+    cost: 2
+    attackTriggers:
+    - trigger: 0
+      attackFunction: Borks
 --- !u!1 &244815022464028417
 GameObject:
   m_ObjectHideFlags: 0

@@ -157,13 +157,15 @@ MonoBehaviour:
   stats:
     name: Hot Pants
     description: Knockout Ass Blows Enemies Away
-    abilityDescription: Immediately roll 2 dice at all enemies
+    abilityDescription: Immediately roll 2 dice
     hp: 0
     damage: 1
     armor: 0
     bonus: 0
     cost: 2
-    attackTriggers: []
+    attackTriggers:
+    - trigger: 1
+      attackFunction: HotPants
 --- !u!1 &4533592035288727903
 GameObject:
   m_ObjectHideFlags: 0

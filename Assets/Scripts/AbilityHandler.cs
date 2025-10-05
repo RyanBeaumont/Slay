@@ -47,7 +47,39 @@ public class AbilityHandler : MonoBehaviour
         };
         GameManager.Instance.gameActions.Add(newAction);
     }
-
+    public void Borks()
+    {
+        GameAction diceAttack = new FireAttackAction
+        {
+            caller = gameObject,
+            animName = "Skeleton_Pose"
+        };
+        GameAction targetAction = new TargetAction
+        {
+            gameAction = diceAttack,
+            caller = gameObject,
+            description = "Throw the Chancla",
+            targetTag = "EnemyCharacter"
+        };
+        GameManager.Instance.gameActions.Add(targetAction);
+    }
+    public void HotPants()
+    {
+        GameAction diceAttack = new FireAttackAction
+        {
+            caller = gameObject,
+            animName = "Skeleton_Defense4",
+            hits = 2,
+        };
+        GameAction targetAction = new TargetAction
+        {
+            gameAction = diceAttack,
+            caller = gameObject,
+            description = "Pop That Ass",
+            targetTag = "EnemyCharacter"
+        };
+        GameManager.Instance.gameActions.Add(targetAction);
+    }
     public void Heartbreaker()
     {
         GameAction diceAttack = new DiceAttackAction

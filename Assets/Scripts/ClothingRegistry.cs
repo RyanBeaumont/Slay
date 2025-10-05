@@ -76,7 +76,7 @@ public class ClothingRegistry : MonoBehaviour
         { "Bottom", 9 },
         { "TopTuckedIn",  6 },
         { "Top",  10 },
-        { "Jacket",  9 },
+        { "Jacket",  11 },
         { "Belt",  7 },
         { "RLeg",   8 },
         {"RFoot", 14},

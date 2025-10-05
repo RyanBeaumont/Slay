@@ -4,11 +4,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public enum Status { AttackBoost, BonusBoost, ArmorBoost}
-[Serializable] public class StatusEffect
+[Serializable]
+public class StatusEffect
 {
     public Status name;
     public int amount;
     public int duration;
+}
+[Serializable]
+public class Attributes
+{
+    public int vitality = 10;
+    public int spirit = 10;
+    public int swagger = 1;
 }
 public class Health : MonoBehaviour
 {

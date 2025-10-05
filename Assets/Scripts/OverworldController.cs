@@ -49,6 +49,7 @@ public class OverworldController : MonoBehaviour
     public int spawnPointIndex;
     [HideInInspector] public Vector3 playerPosition = Vector3.zero;
     public HashSet<string> finishedEncounters = new HashSet<string>();
+    public List<string> quests = new List<string>();
     public int hp;
     public int xpToLevelUp = 100;
     public int xpPerLevelMultiplier = 25;
@@ -137,6 +138,7 @@ public class OverworldController : MonoBehaviour
                 player.GetComponent<Player>().Init(yourTeam[i]);
                 if (i == 0) pm.leader = player.transform;
                 else pm.followers.Add(player.transform);
+                pm.SetStart(player.transform.position);
                 player.GetComponent<Player>().ChangeMaterials(playerMaterial);
 
             }

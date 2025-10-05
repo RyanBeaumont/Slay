@@ -64,7 +64,7 @@ public class DialogBox : MonoBehaviour
         StartCoroutine(TypeLine());
         canvas.enabled = true;
         PartyManager pm = FindFirstObjectByType<PartyManager>();
-        if(pm == null){ pm.canMove = false; }
+        if(pm != null){ pm.canMove = false; }
         if (GameObject.Find("GameManager") != null)
         {
             GameManager.Instance.runTimer = false;

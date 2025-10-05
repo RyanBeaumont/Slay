@@ -23,9 +23,16 @@ public class PartyManager : MonoBehaviour
         foreach (var f in followers)
             f.GetComponent<Player>().facing = 1;
     }
+    public void SetStart(Vector3 pos)
+    {
+        leader.position = pos;
+        positionHistory.Enqueue(pos);
+    }
 
     void Update()
     {
+        DialogBox d = FindFirstObjectByType<DialogBox>();
+        if (d != null && d.GetComponent<Canvas>().enabled) return;
         if (leader == null) return;
         // Read directional input
         if (!isMoving && canMove)
@@ -55,7 +62,8 @@ public class PartyManager : MonoBehaviour
         Vector3 targetPos = leader.position + dir * gridSize;
 
         // ✅ Floor check: is there a floor tile under the target position?
-        if (!Physics.Raycast(targetPos + (Vector3.up * 1f), Vector3.down, gridSize, floorLayer)){
+        if (!Physics.Raycast(targetPos + (Vector3.up * 1f), Vector3.down, gridSize, floorLayer))
+        {
             // No floor under target
             isMoving = false;
             currentDir = Vector3.zero;
@@ -119,4 +127,39 @@ public class PartyManager : MonoBehaviour
         character.GetComponent<Player>().EndWalk();
         onComplete?.Invoke();
     }
+
+    public System.Collections.IEnumerator ClimbLadder(float climbAmount)
+    {
+        canMove = false;   // disable normal movement
+        isMoving = true;
+        float climbDuration = Mathf.Abs(climbAmount) / gridSize * stepDuration;
+        positionHistory.Clear();
+
+        Vector3 startPos = leader.position;
+        Vector3 targetPos = startPos + Vector3.up * climbAmount;
+
+        float t = 0f;
+        Player player = leader.GetComponent<Player>();
+        player.facing = -1;
+        player.Walk();
+        player.Climb();
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / climbDuration;
+            leader.position = Vector3.Lerp(startPos, targetPos, t);
+            yield return null;
+        }
+
+        leader.position = targetPos;
+
+        // Also move followers instantly behind leader, or stagger if you want
+        for (int i = 0; i < followers.Count; i++)
+        {
+            followers[i].position = leader.position;
+        }
+        isMoving = false;
+        canMove = true;
+        player.EndClimb();
+}
 }

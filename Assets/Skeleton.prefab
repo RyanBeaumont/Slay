@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76790f5980b65b6408ff2a6d15bb2818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8430085999044516214}
+  overrides: []
   stateName: Skeleton_Idle
   frameCount: 8
   displayFps: 8

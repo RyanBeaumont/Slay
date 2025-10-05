@@ -96,11 +96,12 @@ MonoBehaviour:
     damageTaken: 0
     spells: []
   yourDiscard: []
-  yourClothes: 000000000100000002000000
+  yourClothes: 0300000004000000050000000600000007000000080000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000002000000021000000
   playerPrefab: {fileID: 6394521066591339663, guid: d8d5f7f9442eaea4191eee3dc658451d, type: 3}
   playerMaterial: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   spawnPointIndex: 0
   playerPosition: {x: 0, y: 0, z: 0}
+  quests: []
   hp: 20
   xpToLevelUp: 100
   xpPerLevelMultiplier: 25

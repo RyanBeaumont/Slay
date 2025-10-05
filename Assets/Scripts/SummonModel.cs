@@ -25,6 +25,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
     SmoothMove smoothMove;
     Health health;
     AbilityHandler abilityHandler;
+    SpriteRenderer selectedArrow;
     void Awake()//
     {
         model = transform.Find("Model");
@@ -34,6 +35,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
         smoothMove = GetComponent<SmoothMove>();
         defenderPos = GameObject.Find("DefenderPosition").transform;
         abilityHandler = GetComponent<AbilityHandler>();
+        selectedArrow = transform.Find("SelectedArrow").GetComponent<SpriteRenderer>();
     }
 
     public void Init(Teammate t)
@@ -77,7 +79,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
         ConsumeAction();
         if (actions <= 0)
         {
-            SetBlack();
+            selectedArrow.enabled = false;
         }
     }
 
@@ -85,7 +87,6 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
     {
         actions--;
         print($"Actions{actions}");
-        GameManager.Instance.TryEndTurn();
     }
 
     public void SetState(PlayerState state)
@@ -93,7 +94,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
         playerState = state;
         customAnimator.loop = true;
         customAnimator.autoUpdate = true;
-        customAnimator.Play("Skeleton_Pose", UnityEngine.Random.Range(0,6),canAutoUpdate:false);
+        customAnimator.Play("Skeleton_Idle", UnityEngine.Random.Range(0,6));
         model.localScale = new Vector2(-0.6f, 0.6f);
         smoothMove.ReturnToStart();
         if (state == PlayerState.Idle)
@@ -150,7 +151,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
                 if (anim != null)
                     anim.ChangeSprite("Hurt", false, true);
             }
-            customAnimator.Play(animationName, 1, canAutoUpdate: false);
+            customAnimator.Play(animationName, 1, fps:8, canLoop:false);
 
 
             // Check lethal break
@@ -195,7 +196,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
         GetComponentInChildren<SmoothMove>().ReturnToStart();
         GameManager.Instance.ShowAll();
         SetState(PlayerState.Idle);
-        if (actions <= 0) SetBlack();
+        if (actions <= 0) selectedArrow.enabled = false;
         GameObject attackCutscene = GameObject.Find("AttackCutscene");
         attackCutscene.transform.Find("Background").GetComponent<SpriteRenderer>().enabled = false;
         GameManager.Instance.runTimer = true;
@@ -232,6 +233,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
             SetState(PlayerState.Idle);
         actions = maxActions;
         RestoreColors();
+        selectedArrow.enabled = true;
 
         //Swag overload
         /*

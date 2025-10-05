@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     name: Combat Boots
-    description: Badass Murder Kick Deals Hella Damage
-    abilityDescription: 
+    description: Badass Murder Kick Reduces Enemy Armor
+    abilityDescription: '[2] Deal 1 Hot Damage and reduce armor by 4'
     hp: 0
     damage: 1
     armor: 0

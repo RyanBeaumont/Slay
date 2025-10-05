@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;  // if using UI Text
 
@@ -9,6 +10,16 @@ public class PlayerInteractor : MonoBehaviour
 
     private IInteractable currentTarget;
     private GameObject currentPrompt;
+    GameObject promptInstance;
+    TMP_Text promptText;
+
+    void Start()
+    {
+        // Create the prompt once at the beginning
+        promptInstance = Instantiate(promptPrefab);
+        promptText = promptInstance.GetComponentInChildren<TMPro.TMP_Text>();
+        promptInstance.SetActive(false); // hidden at start
+    }
 
     void Update()
     {
@@ -16,19 +27,13 @@ public class PlayerInteractor : MonoBehaviour
 
         if (currentTarget != null)
         {
-            if (currentPrompt == null)
-            {
-                // Spawn prompt above target
-                currentPrompt = Instantiate(promptPrefab,  ((MonoBehaviour)currentTarget).transform.position + Vector3.up * 2f, Quaternion.identity);
-                currentPrompt.GetComponentInChildren<TMPro.TMP_Text>().text = $"[E] { currentTarget.GetPromptMessage()}";
-            }
-            else
-            {
-                // Keep prompt positioned above target
-                currentPrompt.transform.position =  ((MonoBehaviour)currentTarget).transform.position + Vector3.up * 2f;
-            }
+            // Update prompt position & text
+            promptInstance.SetActive(true);
+            promptInstance.transform.position =
+                ((MonoBehaviour)currentTarget).transform.position + Vector3.up * 2f;
+            promptText.text = $"[E] {currentTarget.GetPromptMessage()}";
 
-            // Interact
+            // Interaction
             if (Input.GetKeyDown(interactKey))
             {
                 currentTarget.Interact();
@@ -36,8 +41,15 @@ public class PlayerInteractor : MonoBehaviour
         }
         else
         {
-            if (currentPrompt != null) Destroy(currentPrompt);
+            promptInstance.SetActive(false);
         }
+    }
+
+    bool CanInteract()
+    {
+        DialogBox d = FindFirstObjectByType<DialogBox>();
+        if (d != null && d.GetComponent<Canvas>().enabled) return false;
+        return true;
     }
 
     void FindInteractable()

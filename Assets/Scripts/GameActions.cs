@@ -249,7 +249,7 @@ public sealed class DiceAttackAction : GameAction
         CustomAnimator c = caller.GetComponentInChildren<CustomAnimator>();
         if (c != null)
         {
-            c.Play(animName, 0, false, 8);
+            c.Play(animName, 0, canLoop:false, fps:8);
         }
         EnemyAnimator a = caller.GetComponentInChildren<EnemyAnimator>();
         if (a != null)
@@ -257,6 +257,35 @@ public sealed class DiceAttackAction : GameAction
             a.ChangeSprite(animName, true, false);
         }
         Camera.main.GetComponent<Animator>().SetTrigger("Punch");
+    }
+}
+public sealed class FireAttackAction : GameAction
+{
+    public int hits = 1;
+    public string animName;
+    public override void Execute()
+    {
+        if (caller == null) return;
+        Camera.main.GetComponent<CameraController>().MoveCamera(caller.transform.position + new Vector3(0f, 3f, 0f), 5.5f);
+        GameManager.Instance.Sound("s_orchestra_hit", GameManager.Instance.orchestraPitch);
+        for (int i = 0; i < hits; i++)
+        {
+            GameManager.Instance.Sound("s_fire", 1f);
+            var d = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("Fire"), caller.transform.position, Quaternion.identity);
+            d.GetComponent<Fire>().target = target.transform;
+        }
+
+        int frame = (int)UnityEngine.Random.Range(0, 10);
+        CustomAnimator c = caller.GetComponentInChildren<CustomAnimator>();
+        if (c != null)
+        {
+            c.Play(animName, 0, false, 8);
+        }
+        EnemyAnimator a = caller.GetComponentInChildren<EnemyAnimator>();
+        if (a != null)
+        {
+            a.ChangeSprite(animName, true, false);
+        }
     }
 }
 

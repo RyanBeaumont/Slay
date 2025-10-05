@@ -157,10 +157,10 @@ MonoBehaviour:
   stats:
     name: Army Top
     description: Drop And Give Me Twenty
-    abilityDescription: +4 Bonus To Roll
-    hp: 1
+    abilityDescription: +4 Accuracy
+    hp: 0
     damage: 0
     armor: 0
-    bonus: 0
+    bonus: 4
     cost: 2
     attackTriggers: []

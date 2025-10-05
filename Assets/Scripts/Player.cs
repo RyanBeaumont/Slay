@@ -38,6 +38,15 @@ public class Player : MonoBehaviour
         customAnimator.autoUpdate = false;
     }
 
+    public void Climb()
+    {
+        customAnimator.Play("Skeleton_Climb", 0, canLoop: true);
+    }
+    public void EndClimb()
+    {
+        customAnimator.Play("Skeleton_Walk", 0, canAutoUpdate: false, canLoop: true, fps: 8);
+    }
+
     // Update is called once per frame
     void Update()
     {

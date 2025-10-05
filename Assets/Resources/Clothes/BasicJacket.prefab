@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6235282635834425720}
+  - component: {fileID: 2924450393670405554}
   m_Layer: 0
   m_Name: BasicJacket
   m_TagString: Untagged
@@ -34,6 +35,28 @@ Transform:
   - {fileID: 6810861005290596901}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2924450393670405554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180572813627763222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf516d518a4384429c0d59872c266e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    name: Jean Jacket
+    description: What's it made from? Girlfriend Material
+    abilityDescription: 
+    hp: 2
+    damage: 0
+    armor: 0
+    bonus: 0
+    cost: 2
+    attackTriggers: []
 --- !u!1 &7334956306425647145
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,7 +69,7 @@ GameObject:
   - component: {fileID: 2021673116549985548}
   - component: {fileID: 7353860119735371372}
   m_Layer: 0
-  m_Name: BasicJacket LArm
+  m_Name: Basic LArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,7 +288,7 @@ GameObject:
   - component: {fileID: 7048386423461054677}
   - component: {fileID: 2982332091754885545}
   m_Layer: 0
-  m_Name: BasicJacket RArm
+  m_Name: Basic RArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

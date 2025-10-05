@@ -52,13 +52,18 @@ MonoBehaviour:
   - {fileID: 1609706894312999814, guid: 1d0fd46e395608846bb4fd24cee0a880, type: 3}
   - {fileID: 1180572813627763222, guid: 16f1122cfc89f444bb2913558c78bb31, type: 3}
   - {fileID: 62465849522793606, guid: 5252de82dd637734f9d4dfe8b2882594, type: 3}
-  - {fileID: 598911161145104571, guid: 1b4b1a698009a774485fa51df654e03d, type: 3}
   - {fileID: 7990350538016487763, guid: 23c3e72e77db8c0449e105610a0d4ace, type: 3}
   - {fileID: 1840725063590727161, guid: fc33ed61cf3065843939b4d994ab0608, type: 3}
+  - {fileID: 2052184266617046248, guid: 8435bfe3ac3358c429d4f4200b011b8d, type: 3}
+  - {fileID: 7835099808275203468, guid: 18351da7bb5f5c244b5f9f44331b58ef, type: 3}
+  - {fileID: 598911161145104571, guid: 1b4b1a698009a774485fa51df654e03d, type: 3}
+  - {fileID: 9215104340111119048, guid: 1d32a05068f536149a799385fce00c5d, type: 3}
+  - {fileID: 4025615005349718061, guid: 2a277f2d27f93674f9968f288c829cf9, type: 3}
+  - {fileID: 337268256088981542, guid: b78bbfd363564ef44b6805383ccc23f1, type: 3}
+  - {fileID: 7497690823223975108, guid: 69bbb95a92255634f9bfecfce842aeeb, type: 3}
+  - {fileID: 8032745457836577924, guid: 79e3a8be17adf0c4399595972c5b018f, type: 3}
   - {fileID: 3489617294247096069, guid: ebe7e9b7113f8504294b4214098b4050, type: 3}
   - {fileID: 4183465793767552294, guid: cb6d0110ed792994792820a32bdc1782, type: 3}
-  - {fileID: 2052184266617046248, guid: 8435bfe3ac3358c429d4f4200b011b8d, type: 3}
-  - {fileID: 8032745457836577924, guid: 79e3a8be17adf0c4399595972c5b018f, type: 3}
   - {fileID: 7490273671215230991, guid: 956456c3e9ccced42835f9b755cc3498, type: 3}
   - {fileID: 5235112898417922147, guid: ae4711f6c6c7b6f49b3ab29e39fd6569, type: 3}
   - {fileID: 173714138746653300, guid: c86decda85bc42b45b6191f9ae8c200f, type: 3}
@@ -68,13 +73,9 @@ MonoBehaviour:
   - {fileID: 1750890790556386384, guid: 29803266a82a6c2408d14bb87141fbe4, type: 3}
   - {fileID: 3477181799909859086, guid: b4b8feab48a6f784db6b7115bbfe080e, type: 3}
   - {fileID: 1573252479200084547, guid: f25de39fa77d20f4fab24e92881b8bca, type: 3}
-  - {fileID: 7835099808275203468, guid: 18351da7bb5f5c244b5f9f44331b58ef, type: 3}
   - {fileID: 9157146934611269391, guid: e1b601c648ec17e468a1f8dbc741e775, type: 3}
-  - {fileID: 9215104340111119048, guid: 1d32a05068f536149a799385fce00c5d, type: 3}
   - {fileID: 949751518675061738, guid: ddc7d7ed9380981479548a078d589b74, type: 3}
-  - {fileID: 4025615005349718061, guid: 2a277f2d27f93674f9968f288c829cf9, type: 3}
   - {fileID: 8195766880623283681, guid: 853fcfc0b4a48454d83c7b25eb7039b1, type: 3}
-  - {fileID: 7497690823223975108, guid: 69bbb95a92255634f9bfecfce842aeeb, type: 3}
   - {fileID: 5664538649441634911, guid: 081e5fd45c1c02b418a027fdbfea4cdf, type: 3}
   - {fileID: 6739566458197640827, guid: 594644966be013b4993a7f3356f50430, type: 3}
   - {fileID: 803957066032983412, guid: 2dde14d4b66e76c48a39f72cf21d519c, type: 3}
@@ -90,7 +91,6 @@ MonoBehaviour:
   - {fileID: 4223836486125458221, guid: 2c299ff333c05a24a971f658b543b1bc, type: 3}
   - {fileID: 728931279391636303, guid: 3f6aaf9204ad5f0448e75c1ce317be16, type: 3}
   - {fileID: 1005338413920002029, guid: 89c374ee39d0e06418c5d768a7f6cae5, type: 3}
-  - {fileID: 337268256088981542, guid: b78bbfd363564ef44b6805383ccc23f1, type: 3}
   - {fileID: 888469756441860269, guid: 64ef9cfb4adb36e4b95690379c570354, type: 3}
   clothingStats: []
   characters:
@@ -101,7 +101,22 @@ MonoBehaviour:
   spells:
   - name: Gun Heels
     description: Roll 5 Attack Dice
-    cost: 2
-    index: 25
+    cost: 0
+    index: 12
     charges: 1
+  - name: Murder Kick
+    description: Deal 1 Damage and Lower Armor by 4
+    cost: 2
+    index: 9
+    charges: -1
+  - name: Hair Sword
+    description: Consume all Swagger and deal damage based on amount
+    cost: 1
+    index: 10
+    charges: -1
+  - name: Kickin Jeans
+    description: Deal 2 Accurate Hits
+    cost: 2
+    index: 15
+    charges: -1
   skeletonPrefab: {fileID: 2052964628962190378, guid: a2a81b44afb4e70458409d50d28e845a, type: 3}
