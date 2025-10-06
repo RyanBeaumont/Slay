@@ -81,17 +81,27 @@ MonoBehaviour:
     fashionPoints: 0
     unassignedPoints: 0
   yourOutfits:
-  - outfit: 0200000008000000
+  - outfit: 000000000100000002000000
     colors:
     - {r: 1, g: 0, b: 0.69640875, a: 1}
     - {r: 0, g: 0, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
     name: BABS
     damageTaken: 0
     spells: []
-  - outfit: 0500000007000000
+  - outfit: 000000000100000002000000
     colors:
     - {r: 1, g: 0.7533275, b: 0, a: 1}
     - {r: 1, g: 0.8965092, b: 0, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    name: Outfit Two
+    damageTaken: 0
+    spells: []
+  - outfit: 000000000100000002000000
+    colors:
+    - {r: 0, g: 0.10661459, b: 1, a: 1}
+    - {r: 0, g: 0.39811707, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
     name: Outfit Two
     damageTaken: 0
     spells: []

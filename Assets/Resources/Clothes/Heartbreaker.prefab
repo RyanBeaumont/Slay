@@ -164,6 +164,7 @@ MonoBehaviour:
     armor: 0
     bonus: 0
     cost: 0
+    type: Top
     attackTriggers:
     - trigger: 0
       attackFunction: Heartbreaker

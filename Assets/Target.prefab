@@ -912,11 +912,11 @@ RectTransform:
   - {fileID: 4646340735032108652}
   m_Father: {fileID: 4366317536310461753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1.5384, y: -0.000024996698}
-  m_SizeDelta: {x: 3.0768, y: -0.000049993}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.0000500679, y: 0}
+  m_SizeDelta: {x: 4.7673, y: 0.1785}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &223923817285600928
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1018,6 +1018,9 @@ MonoBehaviour:
   heartContainer: {fileID: 7001563323585736070}
   nameText: {fileID: 7940319125397395458}
   bonusText: {fileID: 5829533331164043247}
+  healthBar: {fileID: 436573544510416056}
+  healthBarAnim: {fileID: 2922969844935351372}
+  healthBg: {fileID: 6675362680193561078}
   statusEffects: []
 --- !u!114 &7400854451076179737
 MonoBehaviour:

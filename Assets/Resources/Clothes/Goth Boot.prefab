@@ -55,6 +55,7 @@ MonoBehaviour:
     armor: 0
     bonus: 0
     cost: 0
+    type: Shoes
     attackTriggers: []
 --- !u!1 &6798061027133845666
 GameObject:

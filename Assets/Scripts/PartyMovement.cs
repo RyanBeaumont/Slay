@@ -15,7 +15,7 @@ public class PartyManager : MonoBehaviour
     private Queue<Vector3> positionHistory = new Queue<Vector3>();
 
 
-    private bool isMoving = false;
+    public bool isMoving = false; //comment 
     private Vector3 currentDir = Vector3.zero;
 
     void Start()

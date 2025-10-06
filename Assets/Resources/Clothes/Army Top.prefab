@@ -163,4 +163,5 @@ MonoBehaviour:
     armor: 0
     bonus: 4
     cost: 2
+    type: Top
     attackTriggers: []

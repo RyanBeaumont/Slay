@@ -85,6 +85,7 @@ MonoBehaviour:
     armor: 0
     bonus: 0
     cost: 0
+    type: Accessory
     attackTriggers: []
   customAnimator: {fileID: 0}
 --- !u!114 &7139849972828915199

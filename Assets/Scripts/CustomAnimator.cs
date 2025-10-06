@@ -67,6 +67,7 @@ public class CustomAnimator : MonoBehaviour
 
 public void Play(string state, int frame, bool canLoop = true, float fps=4f, bool canAutoUpdate = true)
     {
+        GetComponent<Animator>().enabled = true;
         AnimationEntry entry = overrides.Find(e => e.state == state && e.clip != null);
 
         if (entry != null) stateName = entry.clip.name;

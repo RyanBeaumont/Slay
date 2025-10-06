@@ -163,6 +163,7 @@ MonoBehaviour:
     armor: 0
     bonus: 0
     cost: 2
+    type: Bottom
     attackTriggers:
     - trigger: 1
       attackFunction: HotPants

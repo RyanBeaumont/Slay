@@ -6,6 +6,7 @@ public class Fire : MonoBehaviour
     public float initialSpeed = 2f;   // Random range multiplier
     public float acceleration = 5f;   // How fast it accelerates toward target
     public float arriveThreshold = 0.5f; // Distance at which it "arrives"
+    public int damage = 10;
 
     private Vector2 velocity;
 
@@ -38,7 +39,7 @@ public class Fire : MonoBehaviour
     void Arrive()
     {
         Health otherHealth = target.GetComponentInChildren<Health>();
-        if (otherHealth != null) otherHealth.Damage(11, 10);
+        if (otherHealth != null) otherHealth.Damage(damagePerHit:damage, guaranteedHit:true, damageType:DamageType.Fire);
         Destroy(gameObject);  // optional: remove projectile
     }
 }

@@ -157,9 +157,11 @@ MonoBehaviour:
   stats:
     name: Basic Top
     description: You got it for FREE!
+    abilityDescription: 
     hp: 0
     damage: 0
     armor: 0
     bonus: 0
     cost: 0
+    type: Top
     attackTriggers: []

@@ -56,6 +56,7 @@ MonoBehaviour:
     armor: 0
     bonus: 0
     cost: 2
+    type: Jacket
     attackTriggers: []
 --- !u!1 &7334956306425647145
 GameObject:

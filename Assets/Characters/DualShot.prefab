@@ -313,11 +313,14 @@ MonoBehaviour:
     armor: 9
     bonus: 2
     cost: 0
+    type: Accessory
     attackTriggers: []
   xpFromKill: 20
   cashFromKill: 20
   lootDrops: 
   maxActions: 2
+  hpPerHeart: 10
+  damagePerHit: 10
 --- !u!114 &6668567299810875641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +454,10 @@ PrefabInstance:
     - target: {fileID: 4115304222076261531, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
       propertyPath: stats.hp
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115304222076261531, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
+      propertyPath: weakness
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4115304222076261531, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
       propertyPath: stats.armor

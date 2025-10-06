@@ -165,6 +165,7 @@ MonoBehaviour:
     armor: 0
     bonus: 0
     cost: 2
+    type: Top
     attackTriggers: []
 --- !u!1 &4100332171753248898
 GameObject:

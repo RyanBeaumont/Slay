@@ -140,16 +140,46 @@ public class ClothingMenu : MonoBehaviour
     }
 
     void ClickEquip(int index)
+{
+    Outfit thisOutfit = OverworldController.Instance.yourOutfits[currentOutfit];
+
+    // Equip the new item
+    thisOutfit.outfit = thisOutfit.outfit.Concat(new int[] { index }).ToArray();
+    thisOutfit.colors = thisOutfit.colors.Concat(new Color[] { Color.white }).ToArray();
+    thisOutfit.spells = ClothingRegistry.Instance.GetSpells(thisOutfit);
+
+    // Get the type of the new item
+    ClothingStats myStats = ClothingRegistry.Instance.GetStats(new int[] { index }, new ClothingStats());
+    string thisType = myStats.type;
+        print($"This type: {thisType}");
+
+    // Collect duplicates to remove
+        List<int> toUnequip = new List<int>();
+    foreach (int indexToCheck in thisOutfit.outfit)
     {
-        Outfit thisOutfit = OverworldController.Instance.yourOutfits[currentOutfit];
-        thisOutfit.outfit = thisOutfit.outfit.Concat(new int[] { index }).ToArray();
-        thisOutfit.colors = thisOutfit.colors.Concat(new Color[] { Color.white }).ToArray();
-        thisOutfit.spells = ClothingRegistry.Instance.GetSpells(thisOutfit); //PLACEHOLDER - Only refresh spells at checkpoint!
-        OverworldController.Instance.yourClothes.Remove(index);
-        OverworldController.Instance.yourOutfits[currentOutfit] = thisOutfit;
-        HideUI();
-        ShowUI();
+        ClothingStats statsToCheck = ClothingRegistry.Instance.GetStats(new int[] { indexToCheck }, new ClothingStats());
+        string typeToCheck = statsToCheck.type;
+        if (typeToCheck == thisType && thisType != "Accessory" && indexToCheck != index)
+        {
+            toUnequip.Add(indexToCheck);
+        }
     }
+
+    // Now unequip them safely
+    foreach (int unequipIndex in toUnequip)
+    {
+        ClickUnequip(unequipIndex);
+    }
+
+    // Remove the newly equipped item from inventory
+    OverworldController.Instance.yourClothes.Remove(index);
+
+    // Save back
+    OverworldController.Instance.yourOutfits[currentOutfit] = thisOutfit;
+
+    HideUI();
+    ShowUI();
+}
 
     void ClickUnequip(int index)
     {

@@ -26,7 +26,7 @@ public enum AttackTrigger
 [System.Serializable]
 public class ClothingStats
 {
-    public string name;  public string description; public string abilityDescription; public int hp; public int damage; public int armor; public int bonus; public int cost;
+    public string name;  public string description; public string abilityDescription; public int hp; public int damage; public int armor; public int bonus; public int cost; public string type = "Accessory";
     public List<TriggeredAttack> attackTriggers = new List<TriggeredAttack>();
 }
 public class ClothingRegistry : MonoBehaviour
@@ -207,6 +207,7 @@ public class ClothingRegistry : MonoBehaviour
             newStats.attackTriggers.AddRange(addStats.attackTriggers);
             newStats.name = addStats.name;
             newStats.description = addStats.description;
+            newStats.type = addStats.type;
         }
         return newStats;
     }

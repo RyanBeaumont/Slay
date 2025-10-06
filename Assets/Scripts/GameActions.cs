@@ -177,8 +177,8 @@ public sealed class HealAction : GameAction
         if (caller == null || target == null) return;
         Camera.main.GetComponent<CameraController>().MoveCamera(target.transform.position + new Vector3(0f, 3f, 0f), 5.5f);
         GameManager.Instance.Sound("s_orchestra_hit", GameManager.Instance.orchestraPitch);
-        Health h = target.GetComponent<Health>();
-        h.stats.hp = Mathf.Min(h.stats.hp + amount, h.maxHp);
+        Health h = target.GetComponentInChildren<Health>();
+        h.hp = Mathf.Min(h.hp + amount, h.maxHp);
 
         int frame = (int)UnityEngine.Random.Range(0, 2);
         caller.GetComponentInChildren<CustomAnimator>().autoUpdate = false;
@@ -197,7 +197,7 @@ public sealed class SelfHarmAction : GameAction
         Camera.main.GetComponent<CameraController>().MoveCamera(target.transform.position + new Vector3(0f, 3f, 0f), 5.5f);
         Health h = caller.GetComponent<Health>();
         for(int i=0; i<amount; i++)
-            h.Damage(1, 20);
+            h.Damage(guaranteedHit:true);
     }
 }
 [Serializable]

@@ -129,6 +129,52 @@ public class BattleMenu : MonoBehaviour
                     Targeter targeter = targeterObj.GetComponent<Targeter>();
                     targeter.Init(newAction, owner.gameObject, "Gun Heels", "EnemyCharacter", true);
                     break;
+                case "Kickin Jeans":
+                     GameAction newAction2 = new AttackAction
+                    {
+                        caller = owner.gameObject,
+                        target = null,
+                        dice = 2,
+                        bonus = 4,
+                        animationName = "Skeleton_Kick"
+                    };
+                    GetComponent<Canvas>().enabled = false;
+                    GameObject tt = Instantiate(Resources.Load<GameObject>("Targeter"));
+                    Targeter t = tt.GetComponent<Targeter>();
+                    t.Init(newAction2, owner.gameObject, "Jean Kick", "EnemyCharacter", true);
+                    break;
+                case "Hair Sword":
+                 GameAction murderAction= new AttackAction
+                {
+                    caller = owner.gameObject,
+                    target = null,
+                    dice = GameManager.Instance.swag,
+                    bonus = 2,
+                    animationName = "Skeleton_Gun_Heels"
+                };
+                GameManager.Instance.swag = 0;
+                GetComponent<Canvas>().enabled = false;
+                Targeter murderTargeter = Instantiate(Resources.Load<GameObject>("Targeter")).GetComponent<Targeter>();
+                murderTargeter.Init(murderAction, owner.gameObject, "Murder Boots", "EnemyCharacter", true);
+                break;
+                case "Murder Kick":
+                    GameAction kickAction = new StatusEffectAction
+                    {
+                        caller = owner.gameObject,
+                        target = null,
+                        dialog = new string[] {"You leap into action, kicking the enemy straight in the balls"},
+                        statusEffect = new StatusEffect
+                        {
+                            name = Status.ArmorBoost,
+                            amount = -4,
+                            duration = 1
+                        }
+                    };
+                    GameManager.Instance.swag = 0;
+                    GetComponent<Canvas>().enabled = false;
+                    Targeter kickTargeter = Instantiate(Resources.Load<GameObject>("Targeter")).GetComponent<Targeter>();
+                    kickTargeter.Init(kickAction, owner.gameObject, "Murder Boots", "EnemyCharacter", true);
+                    break;
                 default: break;
             }
         }

@@ -126,7 +126,7 @@ public class DialogBox : MonoBehaviour
     {
         canvas.enabled = false;
         PartyManager pm = FindFirstObjectByType<PartyManager>();
-        if (pm == null) { pm.canMove = true; }
+        if (pm != null) { pm.canMove = true; }
     }
 
     private IEnumerator TypeLine()

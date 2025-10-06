@@ -273,4 +273,5 @@ MonoBehaviour:
     armor: 3
     bonus: 0
     cost: 2
+    type: Accessory
     attackTriggers: []

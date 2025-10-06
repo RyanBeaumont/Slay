@@ -61,7 +61,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
         //Change stats
         clothingStats = ClothingRegistry.Instance.GetStats(teammate.equippedOutfit.outfit, teammate.GetBaseStats());
         clothingStats.hp -= teammate.equippedOutfit.damageTaken;
-        health.SetStats(clothingStats);
+        health.SetStats(clothingStats,10);
         abilityHandler.SetStats(clothingStats);
         characterName = teammate.name;
         health.SetName(characterName);
@@ -145,7 +145,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
             var health = target.GetComponentInChildren<Health>();
             if (health == null) { EndAttack(); yield break; }
 
-            if (health.Damage(roll, bonus))
+            if (health.Damage(bonus:bonus))
             {
                 var anim = target.GetComponent<EnemyAnimator>();
                 if (anim != null)
@@ -155,7 +155,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
 
 
             // Check lethal break
-            if (target == null || target.GetComponentInChildren<Health>().stats.hp <= 0)
+            if (target == null || target.GetComponentInChildren<Health>().hp <= 0)
             {
                 attackCutscene.transform.Find("Background").GetComponent<Animator>().SetBool("Dead", true);
                 GameManager.Instance.Sound("s_cha_ching", 1);
@@ -166,7 +166,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
                 EndAttack();
                 yield break;
             }
-            if (health != null && health.stats.hp <= 0) break;
+            if (health != null && health.hp <= 0) break;
 
             
             yield return new WaitForSeconds(0.3f);
@@ -216,7 +216,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            health.Damage(10, 10);
+            health.Damage(guaranteedHit:true);
         }
         else
         {

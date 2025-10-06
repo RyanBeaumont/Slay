@@ -26,6 +26,8 @@ public static class GameConstants
     public int cashFromKill = 20;
     public int[] lootDrops;
     public int maxActions = 1;
+    public int hpPerHeart = 10;
+    public int damagePerHit = 10;
     string thisAttack;
     EnemyAnimator enemyAnimator;
     CustomAnimator customAnimator;
@@ -34,7 +36,7 @@ public static class GameConstants
         smoothMove = GetComponent<SmoothMove>();
         health = GetComponentInChildren<Health>();
         ChooseNextAttack();
-        health.SetStats(stats);
+        health.SetStats(stats,hpPerHeart);
         health.SetName(characterName);
         enemyAnimator = GetComponent<EnemyAnimator>();
         customAnimator = GetComponent<CustomAnimator>();
@@ -184,11 +186,10 @@ public static class GameConstants
             {
                 if(enemyAnimator != null) enemyAnimator.ChangeSprite(thisAttack, true, false);
                 if (customAnimator != null) customAnimator.Play(thisAttack, 0, canLoop:false);
-                int roll = UnityEngine.Random.Range(1, 13);
-                if (target.GetComponentInChildren<Health>().Damage(roll, health.stats.bonus))
+                if (target.GetComponentInChildren<Health>().Damage(damagePerHit:damagePerHit, bonus:health.stats.bonus))
                 {
                     target.customAnimator.Play("Skeleton_Hurt", 0, canAutoUpdate: false);
-                    if (target.GetComponentInChildren<Health>().stats.hp <= 0)
+                    if (target.GetComponentInChildren<Health>().hp <= 0)
                     {
                         attackCutscene.transform.Find("Background").GetComponent<Animator>().SetBool("Dead", true);
                         GameManager.Instance.Sound("s_explosion", 1);

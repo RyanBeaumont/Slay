@@ -49,7 +49,7 @@ public class DiceRoll : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
                 if (Vector2.Distance(transform.position, target.transform.position) < 1f)
                 {
-                    target.Damage(roll, bonus);
+                    target.Damage(bonus:bonus);
                     Destroy(gameObject);
                 }
             }

@@ -55,6 +55,7 @@ MonoBehaviour:
     armor: 0
     bonus: 0
     cost: 2
+    type: Shoes
     attackTriggers:
     - trigger: 0
       attackFunction: Borks

@@ -158,11 +158,13 @@ MonoBehaviour:
   stats:
     name: Underwear
     description: Under Where?
+    abilityDescription: 
     hp: 0
     damage: 0
     armor: 0
     bonus: 0
     cost: 0
+    type: Bottom
     attackTriggers: []
 --- !u!1 &8764956588975074490
 GameObject:
