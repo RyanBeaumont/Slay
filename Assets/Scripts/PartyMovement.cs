@@ -11,6 +11,7 @@ public class PartyManager : MonoBehaviour
     public bool canMove = true;
 
     public LayerMask floorLayer; // assign in inspector
+    public LayerMask wallLayer;
 
     private Queue<Vector3> positionHistory = new Queue<Vector3>();
 
@@ -60,6 +61,16 @@ public class PartyManager : MonoBehaviour
     void TryMove(Vector3 dir)
     {
         Vector3 targetPos = leader.position + dir * gridSize;
+
+        // ✅ Wall check: is there a wall object at the target position?
+        if (Physics.Raycast(leader.position + Vector3.up * 0.5f, dir, gridSize, wallLayer))
+        {
+            // Wall directly in front
+            isMoving = false;
+            currentDir = Vector3.zero;
+            Debug.Log("Blocked by wall!");
+            return;
+        }
 
         // ✅ Floor check: is there a floor tile under the target position?
         if (!Physics.Raycast(targetPos + (Vector3.up * 1f), Vector3.down, gridSize, floorLayer))

@@ -31,11 +31,13 @@ public class Player : MonoBehaviour
     public void Walk()
     {
         customAnimator.autoUpdate = true;
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     public void EndWalk()
     {
         customAnimator.autoUpdate = false;
+        GetComponent<BoxCollider>().enabled = true;
     }
 
     public void Climb()
