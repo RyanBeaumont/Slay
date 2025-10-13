@@ -14,6 +14,7 @@ using System;
 }
 public class DialogBox : MonoBehaviour
 {
+    public event Action OnDialogFinished;
     public TextMeshProUGUI textComponent;
     public List<Dialog> dialog = new List<Dialog>();
     Canvas canvas;
@@ -52,12 +53,14 @@ public class DialogBox : MonoBehaviour
         foreach (string txt in messages)
         {
             dialog.Add(new Dialog { text = txt });
-            StartDialog();
+            StartDialog(dialog);
         }
     }
 
-    public void StartDialog()
+    public void StartDialog(List<Dialog> newDialog)
     {
+        if (canvas.enabled) return;
+        dialog = new List<Dialog>(newDialog);
         anim.SetBool("DialogActive", true);
         textComponent.text = "";
         SpawnCharacter(dialog[0].right, dialog[0].character, dialog[0].sprite, dialog[0].pose);
@@ -86,6 +89,7 @@ public class DialogBox : MonoBehaviour
         }
         else
         {
+            OnDialogFinished?.Invoke();
             anim.SetBool("DialogActive", false);
             Invoke("DisableCanvas", 0.2f);
             spriteRenderer.enabled = false;
@@ -115,8 +119,10 @@ public class DialogBox : MonoBehaviour
             {
                 Outfit outfit = OverworldController.Instance.yourTeam[character].equippedOutfit;
                 GameObject skeleton = ClothingRegistry.Instance.SpawnCharacter(character, outfit, model);
-                if (!right) skeleton.transform.localScale = new Vector3(skeleton.transform.localScale.x * -1, skeleton.transform.localScale.y, skeleton.transform.localScale.z);
-                skeleton.GetComponent<CustomAnimator>().Play(pose, 0, canAutoUpdate:false);
+                skeleton.GetComponent<CustomAnimator>().Play(pose, 0, canAutoUpdate: false);
+                var xScale = Mathf.Abs(model.transform.localScale.x);
+                if (right) model.localScale = new Vector3(xScale, model.transform.localScale.y, model.transform.localScale.z);
+                else model.localScale = new Vector3(-xScale, model.transform.localScale.y, model.transform.localScale.z);
             }
 
         }

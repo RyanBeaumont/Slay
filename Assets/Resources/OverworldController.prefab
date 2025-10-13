@@ -63,23 +63,6 @@ MonoBehaviour:
     defensePoints: 0
     fashionPoints: 0
     unassignedPoints: 0
-  - index: 1
-    name: Dara
-    level: 1
-    xp: 75
-    equippedOutfit:
-      outfit: 000000000100000002000000
-      colors:
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 1, g: 1, b: 1, a: 1}
-      name: Noob Outfit
-      damageTaken: 0
-      spells: []
-    attackPoints: 0
-    defensePoints: 0
-    fashionPoints: 0
-    unassignedPoints: 0
   yourOutfits:
   - outfit: 000000000100000002000000
     colors:
@@ -106,12 +89,11 @@ MonoBehaviour:
     damageTaken: 0
     spells: []
   yourDiscard: []
-  yourClothes: 0300000004000000050000000600000007000000080000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000002000000021000000
+  yourClothes: 
   playerPrefab: {fileID: 6394521066591339663, guid: d8d5f7f9442eaea4191eee3dc658451d, type: 3}
   playerMaterial: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   spawnPointIndex: 0
   playerPosition: {x: 0, y: 0, z: 0}
-  quests: []
   hp: 20
   xpToLevelUp: 100
   xpPerLevelMultiplier: 25

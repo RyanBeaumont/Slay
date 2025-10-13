@@ -40,6 +40,7 @@ public class ClothingMenu : MonoBehaviour
         }
     }
 
+
     public void ShowTooltip(string title, string stats, string description, Vector3 position)
     {
         toolTip.enabled = true;

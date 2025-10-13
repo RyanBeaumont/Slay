@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PersistentObject : MonoBehaviour
 {
-    public string encounterID;
-    public bool active = true;
+    [HideInInspector] public string encounterID;
+    [HideInInspector] public bool active = true;
     void Awake()
     {
         encounterID = $"{gameObject.scene.name}_{transform.position}";

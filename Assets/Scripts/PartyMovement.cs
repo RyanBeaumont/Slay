@@ -16,7 +16,7 @@ public class PartyManager : MonoBehaviour
     private Queue<Vector3> positionHistory = new Queue<Vector3>();
 
 
-    public bool isMoving = false; //comment 
+    public int moveCount = 0; //How many coroutines are running
     private Vector3 currentDir = Vector3.zero;
 
     void Start()
@@ -36,7 +36,7 @@ public class PartyManager : MonoBehaviour
         if (d != null && d.GetComponent<Canvas>().enabled) return;
         if (leader == null) return;
         // Read directional input
-        if (!isMoving && canMove)
+        if (moveCount == 0 && canMove)
         {
             if (Input.GetKey(KeyCode.W)) currentDir = Vector3.forward;
             else if (Input.GetKey(KeyCode.S)) currentDir = Vector3.back;
@@ -66,7 +66,6 @@ public class PartyManager : MonoBehaviour
         if (Physics.Raycast(leader.position + Vector3.up * 0.5f, dir, gridSize, wallLayer))
         {
             // Wall directly in front
-            isMoving = false;
             currentDir = Vector3.zero;
             Debug.Log("Blocked by wall!");
             return;
@@ -76,7 +75,6 @@ public class PartyManager : MonoBehaviour
         if (!Physics.Raycast(targetPos + (Vector3.up * 1f), Vector3.down, gridSize, floorLayer))
         {
             // No floor under target
-            isMoving = false;
             currentDir = Vector3.zero;
             Debug.Log("No floor tile here!");
             return;
@@ -95,8 +93,6 @@ public class PartyManager : MonoBehaviour
             else if (Input.GetKey(KeyCode.A)) currentDir = Vector3.left;
             else if (Input.GetKey(KeyCode.D)) currentDir = Vector3.right;
             else currentDir = Vector3.zero;
-
-            isMoving = false; // allow next step
         }));
 
         // Record leader’s new position
@@ -118,12 +114,11 @@ public class PartyManager : MonoBehaviour
 
             StartCoroutine(MoveStep(followers[i], followTarget, null));
         }
-
-        isMoving = true;
     }
 
     System.Collections.IEnumerator MoveStep(Transform character, Vector3 targetPos, System.Action onComplete)
     {
+        moveCount++;
         character.GetComponent<Player>().Walk();
         Vector3 startPos = character.position;
         float t = 0f;
@@ -136,13 +131,14 @@ public class PartyManager : MonoBehaviour
         }
         character.position = targetPos;
         character.GetComponent<Player>().EndWalk();
+        moveCount--;
         onComplete?.Invoke();
     }
 
     public System.Collections.IEnumerator ClimbLadder(float climbAmount)
     {
+        moveCount++;
         canMove = false;   // disable normal movement
-        isMoving = true;
         float climbDuration = Mathf.Abs(climbAmount) / gridSize * stepDuration;
         positionHistory.Clear();
 
@@ -169,7 +165,7 @@ public class PartyManager : MonoBehaviour
         {
             followers[i].position = leader.position;
         }
-        isMoving = false;
+        moveCount--;
         canMove = true;
         player.EndClimb();
 }

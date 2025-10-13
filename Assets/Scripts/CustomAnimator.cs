@@ -76,7 +76,10 @@ public void Play(string state, int frame, bool canLoop = true, float fps=4f, boo
         loop = canLoop;
         displayFps = fps;
 
-    // refresh frameCount for new clip
+        timer = 0f;
+        this.frame = frame;
+
+        // refresh frameCount for new clip
         foreach (var clip in animator.runtimeAnimatorController.animationClips)
         {
             if (clip.name == stateName)
@@ -86,8 +89,8 @@ public void Play(string state, int frame, bool canLoop = true, float fps=4f, boo
             }
         }
 
-    GotoFrame(frame);
-}
+        GotoFrame(frame);
+    }
 
     void GotoFrame(int f)
     {

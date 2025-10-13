@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -49,13 +48,13 @@ public class OverworldController : MonoBehaviour
     public int spawnPointIndex;
     [HideInInspector] public Vector3 playerPosition = Vector3.zero;
     public HashSet<string> finishedEncounters = new HashSet<string>();
-    public List<string> quests = new List<string>();
     public int hp;
     public int xpToLevelUp = 100;
     public int xpPerLevelMultiplier = 25;
     [HideInInspector] public int cash = 0;
     public Sprite[] faces;
-
+    List<Quest> activeQuests = new List<Quest>();
+    List<Quest> completedQuests = new List<Quest>();
     public int armor;
     List<GameObject> enemiesForNextEncounter;
     int enemyHp, enemyArmor;
@@ -94,6 +93,15 @@ public class OverworldController : MonoBehaviour
             }
         }
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) //Debug: Add all clothing to registry
+        {
+            for (int i = 0; i < ClothingRegistry.Instance.clothing.Count; i++)
+                yourClothes.Add(i);
+        }
     }
 
     private void OnDestroy()
@@ -146,7 +154,7 @@ public class OverworldController : MonoBehaviour
             pm.leader.GetComponent<PlayerInteractor>().enabled = true;
             GameObject dialogBox = Instantiate(Resources.Load<GameObject>("Dialog"));
             dialogBox.GetComponent<Canvas>().worldCamera = Camera.main;
-
+            dialogBox.GetComponent<Canvas>().sortingLayerName = "Foreground";
         }
 
     }
@@ -155,7 +163,7 @@ public class OverworldController : MonoBehaviour
     {
         foreach (Teammate teammate in yourTeam)
         {
-            int maxXp = teammate.level * xpPerLevelMultiplier + xpToLevelUp; 
+            int maxXp = teammate.level * xpPerLevelMultiplier + xpToLevelUp;
             teammate.xp += newXp;
             while (teammate.xp >= maxXp)
             {
@@ -166,6 +174,43 @@ public class OverworldController : MonoBehaviour
             }
         }
     }
+    
+    //Quest logic
+    public void StartQuest(Quest quest)
+    {
+        if (!activeQuests.Contains(quest))
+            activeQuests.Add(quest);
+    }
+
+    public float CompleteQuest(string questName, float progress)
+    {
+    Quest quest = activeQuests.FirstOrDefault(q => q.name == questName);
+    if (!activeQuests.Contains(quest))
+    {
+        Debug.LogWarning($"[QuestManager] Tried to update quest '{quest.name}' but it isn't active.");
+        return 0f;
+    }
+
+    // Increment progress safely
+    quest.progress += progress;
+    quest.progress = Mathf.Clamp01(quest.progress); // ensures it stays between 0–1
+
+        if (quest.progress >= 1f)
+        {
+            // Quest complete
+            activeQuests.Remove(quest);
+            completedQuests.Add(quest);
+            Debug.Log($"[QuestManager] Quest '{quest.name}' completed!");
+        }
+        else
+        {
+            Debug.Log($"[QuestManager] Quest '{quest.name}' progress: {quest.progress:P0}");
+        }
+        return quest.progress;
+}
+
+    public bool IsQuestComplete(string quest) => completedQuests.FirstOrDefault(q => q.name == quest) != null;
+    public bool IsQuestActive(string quest) => activeQuests.FirstOrDefault(q => q.name == quest) != null;
 
     public void Encounter(List<GameObject> enemyList)
     {
