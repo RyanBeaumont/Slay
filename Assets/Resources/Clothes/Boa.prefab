@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3718348153465916766}
   - component: {fileID: -7039051017601493630}
-  m_Layer: 0
+  - component: {fileID: 351302984588505812}
+  m_Layer: 5
   m_Name: Boa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,12 +50,33 @@ MonoBehaviour:
     name: Feather Boa
     description: Actual Snake Inside!
     abilityDescription: 
-    hp: 0
-    damage: 0
+    hp: 1
+    damage: 1
     armor: 0
     bonus: 0
-    cost: 0
+    cost: 4
+    type: Accessory
+    damageTypes: 01000000
+    rarity: 2
     attackTriggers: []
+--- !u!114 &351302984588505812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598911161145104571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Animate Dead
+    description: Resurrect the last killed ally outfit
+    cost: 4
+    index: 0
+    charges: 1
 --- !u!1 &1206244456213149085
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ MonoBehaviour:
   yourTeam:
   - index: 0
     name: Elladonna
-    level: 1
+    level: 4
     xp: 0
     equippedOutfit:
       outfit: 000000000100000002000000
@@ -61,7 +61,7 @@ MonoBehaviour:
       spells: []
     attackPoints: 0
     defensePoints: 0
-    fashionPoints: 0
+    fashionPoints: 4
     unassignedPoints: 0
   yourOutfits:
   - outfit: 000000000100000002000000

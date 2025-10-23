@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3164634189171851332}
   - component: {fileID: 4834869534553193455}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Skirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,15 +46,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    name: Flutterskirt
-    description: Hidden Blades Attack Everyone
-    abilityDescription: '[4] Deal 2 damage to ALL characters'
+    name: Miniskirt
+    description: 
+    abilityDescription: Build up rage and on your third turn, unleash
     hp: 0
     damage: 0
     armor: 0
     bonus: 0
     cost: 1
-    attackTriggers: []
+    type: Bottom
+    damageTypes: 00000000
+    rarity: 0
+    attackTriggers:
+    - trigger: 0
+      attackFunction: Miniskirt
 --- !u!1 &5088091742885820178
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +135,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: -6515434149020991855, guid: 91fdb963e52f6e240bb7af522cc5329a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

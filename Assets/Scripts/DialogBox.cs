@@ -118,7 +118,7 @@ public class DialogBox : MonoBehaviour
             if (character < OverworldController.Instance.yourTeam.Count)
             {
                 Outfit outfit = OverworldController.Instance.yourTeam[character].equippedOutfit;
-                GameObject skeleton = ClothingRegistry.Instance.SpawnCharacter(character, outfit, model);
+                GameObject skeleton = ClothingRegistry.Instance.SpawnCharacter(character, outfit, model, sortingLayerName:"UI");
                 skeleton.GetComponent<CustomAnimator>().Play(pose, 0, canAutoUpdate: false);
                 var xScale = Mathf.Abs(model.transform.localScale.x);
                 if (right) model.localScale = new Vector3(xScale, model.transform.localScale.y, model.transform.localScale.z);

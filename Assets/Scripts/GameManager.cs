@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     bool turnStillGoing = false;
     public event Action OnTurnStart;
     public event Action OnSummon; //When any character is summoned
-    public event Action OnDeath; //When any character dies
+    public event Action OnAnyDeath; //When any character dies
     private static GameManager _instance;
 
     public static GameManager Instance
@@ -384,5 +384,14 @@ public class GameManager : MonoBehaviour
         source.pitch = pitch;
         source.Play();
         Destroy(source, source.clip.length);
+    }
+
+    public void OnAnyDeathTrigger()
+    {
+        OnAnyDeath?.Invoke();
+    }
+    public void OnSummonTrigger()
+    {
+        OnSummon?.Invoke();
     }
 }

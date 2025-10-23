@@ -118,7 +118,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5987256483613224564}
   - component: {fileID: 3020594048078548847}
-  m_Layer: 0
+  - component: {fileID: -823800693956159192}
+  m_Layer: 5
   m_Name: Choker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,10 +157,32 @@ MonoBehaviour:
   stats:
     name: Choker
     description: E Girls Are Ruining Your Life
-    abilityDescription: 
+    abilityDescription: Choke the enemy, stunning them
     hp: 0
     damage: 0
     armor: 2
     bonus: 0
     cost: 1
+    type: Accessory
+    damageTypes: 01000000
+    rarity: 2
     attackTriggers: []
+--- !u!114 &-823800693956159192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4183465793767552294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Choker
+    description: Choke Her!
+    function: 
+    cost: 4
+    index: 0
+    charges: -1

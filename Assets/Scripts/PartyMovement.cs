@@ -131,6 +131,7 @@ public class PartyManager : MonoBehaviour
         }
         character.position = targetPos;
         character.GetComponent<Player>().EndWalk();
+        yield return new WaitForFixedUpdate();
         moveCount--;
         onComplete?.Invoke();
     }

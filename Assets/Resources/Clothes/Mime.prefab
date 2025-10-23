@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 4261364719233474346, guid: 91fdb963e52f6e240bb7af522cc5329a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -184,7 +184,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_Sprite: {fileID: -46864500873115685, guid: 91fdb963e52f6e240bb7af522cc5329a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -293,7 +293,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 3767777121285912046, guid: 91fdb963e52f6e240bb7af522cc5329a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -337,7 +337,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4316031759401276055}
   - component: {fileID: 2785904579026569876}
-  m_Layer: 0
+  - component: {fileID: 592025882988812825}
+  m_Layer: 5
   m_Name: Mime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,10 +378,32 @@ MonoBehaviour:
   stats:
     name: Mime Top
     description: Baguette Not Included
-    abilityDescription: Attack all enemies simultaneously
-    hp: 0
-    damage: 1
+    abilityDescription: Build an invisible wall for an ally
+    hp: 1
+    damage: 0
     armor: 0
     bonus: 0
-    cost: 4
+    cost: 2
+    type: Top
+    damageTypes: 01000000
+    rarity: 0
     attackTriggers: []
+--- !u!114 &592025882988812825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6467407978429405761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Invisible Wall
+    description: Raise an ally's armor by 4
+    function: Mime
+    cost: 2
+    index: 0
+    charges: -1

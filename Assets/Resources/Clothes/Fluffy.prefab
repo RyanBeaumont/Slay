@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 11
   m_Sprite: {fileID: -1227237464652463533, guid: 2ce4c3cdf2c2d574a9bfe46f41040c99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,7 +119,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5479800641626536524}
-  m_Layer: 0
+  - component: {fileID: -8636275974426699283}
+  - component: {fileID: -6822040166110875251}
+  m_Layer: 5
   m_Name: Fluffy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,6 +146,49 @@ Transform:
   - {fileID: 4728815575757689484}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8636275974426699283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235112898417922147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf516d518a4384429c0d59872c266e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    name: Fur Coat
+    description: They Can't Help But Stare
+    abilityDescription: Taunt the enemy, forcing them to attack you
+    hp: 1
+    damage: 0
+    armor: 0
+    bonus: 0
+    cost: 2
+    type: Jacket
+    damageTypes: 01000000
+    rarity: 0
+    attackTriggers: []
+--- !u!114 &-6822040166110875251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235112898417922147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Taunt
+    description: Force enemies to attack only you
+    cost: 1
+    index: 0
+    charges: -1
 --- !u!1 &6173908092485397899
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +264,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 9
   m_Sprite: {fileID: -2046357920360195560, guid: 2ce4c3cdf2c2d574a9bfe46f41040c99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -329,7 +374,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_Sprite: {fileID: 8205015603515783568, guid: 2ce4c3cdf2c2d574a9bfe46f41040c99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

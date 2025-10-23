@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 6668567299810875641}
   - component: {fileID: -6879936720836900862}
   m_Layer: 0
-  m_Name: Blades 1
+  m_Name: Poisoner
   m_TagString: EnemyCharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,28 +301,30 @@ MonoBehaviour:
   iconContainer: {fileID: 6097256025819582868}
   characterName: Enemy
   attacks:
-  - BasicAttack
-  - AttackUp
+  - PoisonAttack
   icons:
   - {fileID: -7854629474860912292, guid: abb47922aeeaedd41b8d14731a11e572, type: 3}
-  - {fileID: 7272273853178036641, guid: 673e05cf970808243ba0d66cab70ecdd, type: 3}
   stats:
-    name: Blades
+    name: Poisoner
     description: 
     abilityDescription: 
-    hp: 5
+    hp: 3
     damage: 2
-    armor: 6
+    armor: 4
     bonus: 0
     cost: 0
     type: Accessory
-    attackTriggers: []
+    damageTypes: 
+    rarity: 0
+    attackTriggers:
+    - trigger: 2
+      attackFunction: PoisonCloud
   xpFromKill: 20
   cashFromKill: 20
   lootDrops: 
   maxActions: 1
   hpPerHeart: 10
-  damagePerHit: 10
+  damagePerHit: 3
 --- !u!114 &6668567299810875641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,11 +339,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteList:
   - key: Idle
-    sprite: {fileID: 3431492927111950248, guid: 37c172db0a017e34195322838bf2fdad, type: 3}
-  - key: BasicAttack
-    sprite: {fileID: 8967624580355893279, guid: 02f546f33cd1b9d4bbbfe03ba4239c8c, type: 3}
+    sprite: {fileID: 4009355068965086491, guid: db0f3ddbc2c20034f857766413ccabf4, type: 3}
+  - key: PoisonAttack
+    sprite: {fileID: -5776421600631150107, guid: 298c86330b9a5fe48a44677aa09207a3, type: 3}
   - key: Hurt
-    sprite: {fileID: 1172111761254989601, guid: 6fa66ea4218524f4aa29eb2adeace453, type: 3}
+    sprite: {fileID: 3410439384014351281, guid: 09be7fd4e2c4fcb4f82c6f4f70df050c, type: 3}
 --- !u!114 &-6879936720836900862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,7 +383,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.055, y: -0.462, z: 0}
-  m_LocalScale: {x: 0.855525, y: 0.855525, z: 0.855525}
+  m_LocalScale: {x: 0.24999999, y: 0.24999999, z: 0.24999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5996125198481829095}
@@ -428,9 +430,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3431492927111950248, guid: 37c172db0a017e34195322838bf2fdad, type: 3}
+  m_Sprite: {fileID: 4009355068965086491, guid: db0f3ddbc2c20034f857766413ccabf4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -468,6 +470,22 @@ PrefabInstance:
     - target: {fileID: 4115304222076261531, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
       propertyPath: stats.damage
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115304222076261531, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
+      propertyPath: weakness.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115304222076261531, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
+      propertyPath: resistance.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115304222076261531, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
+      propertyPath: 'weakness.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115304222076261531, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
+      propertyPath: 'weakness.Array.data[1]'
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4115304222076261531, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
       propertyPath: statusEffects.Array.size
@@ -515,7 +533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715805856831506079, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.403
+      value: 1.689
       objectReference: {fileID: 0}
     - target: {fileID: 7715805856831506079, guid: 6c0330cecdc72b94b907d7c9c90c0c75, type: 3}
       propertyPath: m_LocalPosition.z

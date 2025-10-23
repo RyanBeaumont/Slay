@@ -4,7 +4,7 @@ public class PersistentObject : MonoBehaviour
 {
     [HideInInspector] public string encounterID;
     [HideInInspector] public bool active = true;
-    void Awake()
+    protected virtual void Awake()
     {
         encounterID = $"{gameObject.scene.name}_{transform.position}";
     }

@@ -57,6 +57,7 @@ public class OverworldController : MonoBehaviour
     List<Quest> completedQuests = new List<Quest>();
     public int armor;
     List<GameObject> enemiesForNextEncounter;
+    GameObject lastEncounter = null;
     int enemyHp, enemyArmor;
 
     public static OverworldController Instance;
@@ -153,8 +154,15 @@ public class OverworldController : MonoBehaviour
             FindFirstObjectByType<OverworldCamera>().target = pm.leader;
             pm.leader.GetComponent<PlayerInteractor>().enabled = true;
             GameObject dialogBox = Instantiate(Resources.Load<GameObject>("Dialog"));
-            dialogBox.GetComponent<Canvas>().worldCamera = Camera.main;
+            dialogBox.GetComponent<Canvas>().worldCamera = Camera.main.transform.Find("OverlayCamera").GetComponent<Camera>();
             dialogBox.GetComponent<Canvas>().sortingLayerName = "Foreground";
+
+            //Finish encounter?
+            if(lastEncounter != null)
+            {
+                lastEncounter.GetComponent<Encounter>().CallNext();
+                lastEncounter = null;
+            }
         }
 
     }
@@ -212,9 +220,12 @@ public class OverworldController : MonoBehaviour
     public bool IsQuestComplete(string quest) => completedQuests.FirstOrDefault(q => q.name == quest) != null;
     public bool IsQuestActive(string quest) => activeQuests.FirstOrDefault(q => q.name == quest) != null;
 
-    public void Encounter(List<GameObject> enemyList)
+    public void Encounter(List<GameObject> enemyList, GameObject encounterObject)
     {
         enemiesForNextEncounter = enemyList;
+        playerPosition = encounterObject.transform.position;
+        spawnPointIndex = -1;
+        lastEncounter = encounterObject;
         SceneManager.LoadScene("BattleScene");
     }
 }

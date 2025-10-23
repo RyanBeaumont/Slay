@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2374046761378213631}
   - component: {fileID: 9090466734834249700}
-  m_Layer: 0
+  - component: {fileID: -5719776105991708769}
+  m_Layer: 5
   m_Name: Bracers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,13 +49,35 @@ MonoBehaviour:
   stats:
     name: Bracers of Blocking
     description: Do the wonder woman thing! And still get hit!
-    abilityDescription: Raise any character's Armor class to max for 1 turn
+    abilityDescription: Become hard to hit for one turn
     hp: 0
     damage: 0
     armor: 0
     bonus: 0
     cost: 1
+    type: Accessory
+    damageTypes: 
+    rarity: 0
     attackTriggers: []
+--- !u!114 &-5719776105991708769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990350538016487763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Bracers of Blocking
+    description: Become invincible for one turn
+    function: Bracers
+    cost: 0
+    index: 0
+    charges: 1
 --- !u!1 &8169612991380503717
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,7 +39,7 @@ public class Fire : MonoBehaviour
     void Arrive()
     {
         Health otherHealth = target.GetComponentInChildren<Health>();
-        if (otherHealth != null) otherHealth.Damage(damagePerHit:damage, guaranteedHit:true, damageType:DamageType.Fire);
+        if (otherHealth != null) otherHealth.Damage(damagePerHit:damage, guaranteedHit:true, damageType: new DamageType[]{ DamageType.Hot});
         Destroy(gameObject);  // optional: remove projectile
     }
 }

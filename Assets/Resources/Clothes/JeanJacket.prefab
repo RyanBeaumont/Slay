@@ -227,7 +227,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2345758799617915069}
-  m_Layer: 0
+  - component: {fileID: -2684691468317330197}
+  - component: {fileID: 5353554042077903994}
+  m_Layer: 5
   m_Name: JeanJacket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,6 +254,49 @@ Transform:
   - {fileID: 63379267311043433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2684691468317330197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195766880623283681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf516d518a4384429c0d59872c266e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    name: Jean Jacket
+    description: Rugged. Versatile. Chic
+    abilityDescription: Deal Damage to Heal Yourself
+    hp: 1
+    damage: 1
+    armor: 2
+    bonus: 2
+    cost: 4
+    type: Jacket
+    damageTypes: 
+    rarity: 0
+    attackTriggers: []
+--- !u!114 &5353554042077903994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195766880623283681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Lifestrike
+    description: A basic attack that heals
+    cost: 3
+    index: 0
+    charges: -1
 --- !u!1 &9213906939119040959
 GameObject:
   m_ObjectHideFlags: 0

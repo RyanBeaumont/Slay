@@ -73,7 +73,7 @@ public class BattleMenu : MonoBehaviour
                     if (tmp != null) tmp.text = $"[{spell.cost}] {spell.name}";
                     if (spell.charges > 0) tmp.text += $"({spell.charges}x Use)";
                     btn.onClick.AddListener(() => UseSpell(spell));
-                    if (GameManager.Instance.swag >= spell.cost)
+                    if (caller.swag >= spell.cost)
                     {
                         tmp.color = Color.yellow;
                     }
@@ -110,73 +110,15 @@ public class BattleMenu : MonoBehaviour
     }
     private void UseSpell(Spell spell)
     {
-        if(GameManager.Instance.swag >= spell.cost && (spell.charges > 0 || spell.charges == -1)){
+        if(owner.swag >= spell.cost && (spell.charges > 0 || spell.charges == -1)){
             if (spell.charges > 0) spell.charges--;
-            GameManager.Instance.swag -= spell.cost;
-            switch (spell.name)
+            owner.swag -= spell.cost;
+            AbilityHandler a = owner.GetComponent<AbilityHandler>();
+            if (a != null)
             {
-                case "Gun Heels":
-                    GameAction newAction = new AttackAction
-                    {
-                        caller = owner.gameObject,
-                        target = null,
-                        dice = 5,
-                        bonus = 0,
-                        animationName = "Skeleton_Gun_Heels"
-                    };
-                    GetComponent<Canvas>().enabled = false;
-                    GameObject targeterObj = Instantiate(Resources.Load<GameObject>("Targeter"));
-                    Targeter targeter = targeterObj.GetComponent<Targeter>();
-                    targeter.Init(newAction, owner.gameObject, "Gun Heels", "EnemyCharacter", true);
-                    break;
-                case "Kickin Jeans":
-                     GameAction newAction2 = new AttackAction
-                    {
-                        caller = owner.gameObject,
-                        target = null,
-                        dice = 2,
-                        bonus = 4,
-                        animationName = "Skeleton_Kick"
-                    };
-                    GetComponent<Canvas>().enabled = false;
-                    GameObject tt = Instantiate(Resources.Load<GameObject>("Targeter"));
-                    Targeter t = tt.GetComponent<Targeter>();
-                    t.Init(newAction2, owner.gameObject, "Jean Kick", "EnemyCharacter", true);
-                    break;
-                case "Hair Sword":
-                 GameAction murderAction= new AttackAction
-                {
-                    caller = owner.gameObject,
-                    target = null,
-                    dice = GameManager.Instance.swag,
-                    bonus = 2,
-                    animationName = "Skeleton_Gun_Heels"
-                };
-                GameManager.Instance.swag = 0;
-                GetComponent<Canvas>().enabled = false;
-                Targeter murderTargeter = Instantiate(Resources.Load<GameObject>("Targeter")).GetComponent<Targeter>();
-                murderTargeter.Init(murderAction, owner.gameObject, "Murder Boots", "EnemyCharacter", true);
-                break;
-                case "Murder Kick":
-                    GameAction kickAction = new StatusEffectAction
-                    {
-                        caller = owner.gameObject,
-                        target = null,
-                        dialog = new string[] {"You leap into action, kicking the enemy straight in the balls"},
-                        statusEffect = new StatusEffect
-                        {
-                            name = Status.ArmorBoost,
-                            amount = -4,
-                            duration = 1
-                        }
-                    };
-                    GameManager.Instance.swag = 0;
-                    GetComponent<Canvas>().enabled = false;
-                    Targeter kickTargeter = Instantiate(Resources.Load<GameObject>("Targeter")).GetComponent<Targeter>();
-                    kickTargeter.Init(kickAction, owner.gameObject, "Murder Boots", "EnemyCharacter", true);
-                    break;
-                default: break;
+                a.Invoke(spell.function, 0f);
             }
+            GetComponent<Canvas>().enabled = false;
         }
     }
 
@@ -184,11 +126,18 @@ public class BattleMenu : MonoBehaviour
     {
 
         Debug.Log($"Clicked {index}: {label}");
-
+        GetComponent<Canvas>().enabled = false;
         switch (label)
         {
+            case "Look Good":
+                GameAction modelAction = new ModelAction
+                {
+                    caller = owner.gameObject,
+                    target = owner.gameObject,
+                };
+                GameManager.Instance.gameActions.Add(modelAction);
+                break;
             case "Change Clothes":
-                GetComponent<Canvas>().enabled = false;
                 GameManager.Instance.handOfCards.SetActive(true);
                 GameManager.Instance.handManager.InitializeHand();
                 FindFirstObjectByType<HandManager>().SetCardCharacter(owner.teammate.index);
@@ -200,9 +149,10 @@ public class BattleMenu : MonoBehaviour
                     target = null,
                     dice = owner.clothingStats.damage,
                     bonus = owner.clothingStats.bonus,
+                    damageTypes = owner.clothingStats.damageTypes,
                     animationName = "Skeleton_Attack1"
                 };
-                GetComponent<Canvas>().enabled = false;
+                
                 GameAction targetAction = new TargetAction
                 {
                     caller = owner.gameObject,
@@ -212,6 +162,28 @@ public class BattleMenu : MonoBehaviour
                     consumeAction = true
                 };
                 GameManager.Instance.gameActions.Add(targetAction);
+                GameManager.Instance.timer = 0;
+                break;
+            case "Swag Strike":
+                GameAction swagAction = new AttackAction
+                {
+                    caller = owner.gameObject,
+                    target = null,
+                    dice = owner.swag,
+                    bonus = 0,
+                    damageTypes = owner.clothingStats.damageTypes,
+                    animationName = "Skeleton_Pose"
+                };
+                GameAction targetAction2 = new TargetAction
+                {
+                    caller = owner.gameObject,
+                    description = "Swag Strike",
+                    gameAction = swagAction,
+                    targetTag = "EnemyCharacter",
+                    consumeAction = false,
+                };
+                owner.AddSwag(-owner.swag);
+                GameManager.Instance.gameActions.Add(targetAction2);
                 GameManager.Instance.timer = 0;
                 break;
         }

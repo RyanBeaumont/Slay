@@ -128,7 +128,7 @@ public class ClothingMenu : MonoBehaviour
                 ClickUnequip(uic.index);
             });
         }
-        var body = ClothingRegistry.Instance.SpawnCharacter(currentOutfit % OverworldController.Instance.yourTeam.Count, thisOutfit, model);
+        var body = ClothingRegistry.Instance.SpawnCharacter(currentOutfit % OverworldController.Instance.yourTeam.Count, thisOutfit, model, sortingLayerName:"UI");
         body.transform.localScale = new Vector3(154f, 154f, 154f);
         ClothingStats stats = ClothingRegistry.Instance.GetStats(thisOutfit.outfit, new ClothingStats());
         statsField.text = "";

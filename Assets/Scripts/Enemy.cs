@@ -36,10 +36,11 @@ public static class GameConstants
         smoothMove = GetComponent<SmoothMove>();
         health = GetComponentInChildren<Health>();
         ChooseNextAttack();
-        health.SetStats(stats,hpPerHeart);
+        health.SetStats(stats, hpPerHeart);
         health.SetName(characterName);
         enemyAnimator = GetComponent<EnemyAnimator>();
         customAnimator = GetComponent<CustomAnimator>();
+        GetComponent<AbilityHandler>().SetStats(stats);
     }
 
 
@@ -55,6 +56,7 @@ public static class GameConstants
             caller = gameObject,
         };
         GameManager.Instance.gameActions.Add(enemyDeath);
+
         GameManager.Instance.CheckForWin();
     }
 
@@ -76,6 +78,7 @@ public static class GameConstants
             switch (attackName)
             {
                 case "BasicAttack":
+                case "PoisonAttack":
                     target = ChooseTarget();
                     break;
                 case "AttackUp":
@@ -147,6 +150,14 @@ public static class GameConstants
                         }
                     };
                     break;
+                case "PoisonAttack":
+                    newAction = new EnemyAttackAction
+                    {
+                        caller = gameObject,
+                        target = nextTarget[i],
+                        statusEffect = new StatusEffect(){name = Status.Poison,amount = 1,duration = -1}
+                    };
+                    break;
                 default: //Basic Attack
                     newAction = new EnemyAttackAction
                     {
@@ -162,7 +173,7 @@ public static class GameConstants
         ChooseNextAttack();
     }
 
-    public IEnumerator StartAttack(SummonModel target)
+    public IEnumerator StartAttack(SummonModel target, StatusEffect statusEffect)
     {
         GameManager.Instance.Sound("s_dbz_jump", 1);
         GameObject attackCutscene = GameObject.Find("AttackCutscene");
@@ -185,9 +196,17 @@ public static class GameConstants
             for (int i = 0; i < health.stats.damage; i++)
             {
                 if(enemyAnimator != null) enemyAnimator.ChangeSprite(thisAttack, true, false);
-                if (customAnimator != null) customAnimator.Play(thisAttack, 0, canLoop:false);
-                if (target.GetComponentInChildren<Health>().Damage(damagePerHit:damagePerHit, bonus:health.stats.bonus))
+                if (customAnimator != null) customAnimator.Play(thisAttack, 0, canLoop: false);
+                int hitResult = target.GetComponentInChildren<Health>().Damage(damagePerHit: damagePerHit, bonus: health.stats.bonus);
+                if (hitResult > 0)
                 {
+                    if(statusEffect.name != Status.None)
+                    {
+                        var p = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("Powerup"),target.transform.position,Quaternion.identity);
+                        p.GetComponent<Powerup>().target = target.transform;
+                        p.GetComponent<Powerup>().statusEffect = statusEffect;
+                        p.GetComponent<Powerup>().useStatusEffect = true;
+                    }
                     target.customAnimator.Play("Skeleton_Hurt", 0, canAutoUpdate: false);
                     if (target.GetComponentInChildren<Health>().hp <= 0)
                     {

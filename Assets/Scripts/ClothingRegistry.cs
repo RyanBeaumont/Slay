@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using UnityEngine.U2D.Animation;
 using System.Linq.Expressions;
 using System.Linq;
+using Unity.VisualScripting;
 public enum AttackTrigger
 {
-    OnTurnStart, OnEnter, OnDeath, None
+    OnTurnStart, OnEnter, OnDeath, None, OnAnyDeath, OnAnyEnter
 }
 [Serializable] public class Spell {
     public string name;
     public string description;
+    public string function;
     public int cost = 1;
     public int index = 0;
     public int charges = 1;
@@ -26,7 +28,7 @@ public enum AttackTrigger
 [System.Serializable]
 public class ClothingStats
 {
-    public string name;  public string description; public string abilityDescription; public int hp; public int damage; public int armor; public int bonus; public int cost; public string type = "Accessory";
+    public string name;  public string description; public string abilityDescription; public int hp; public int damage; public int armor; public int bonus; public int cost; public string type = "Accessory"; public DamageType[] damageTypes = new DamageType[] { }; public int rarity;
     public List<TriggeredAttack> attackTriggers = new List<TriggeredAttack>();
 }
 public class ClothingRegistry : MonoBehaviour
@@ -91,37 +93,46 @@ public class ClothingRegistry : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         //clothing = new List<GameObject>(Resources.LoadAll<GameObject>("Clothes"));
         // Extract stats
+        int i = 0;
         foreach (GameObject prefab in clothing)
         {
             PrefabStats statsHolder = prefab.GetComponent<PrefabStats>();
             if (statsHolder != null)
             {
                 clothingStats.Add(statsHolder.stats); // assuming `PrefabStats` has a field `public ClothingStats stats;`
-            }
-            else
+            }else
             {
                 Debug.LogWarning($"Prefab {prefab.name} has no PrefabStats component!");
                 clothingStats.Add(new ClothingStats());
             }
+            PrefabSpell spellHolder = prefab.GetComponent<PrefabSpell>();
+            if (spellHolder != null)
+            {
+                spellHolder.spell.index = i;
+                spells.Add(spellHolder.spell);
+            }
+            
+            i++;
         }
 
         Debug.Log($"Loaded {clothing.Count} clothing prefabs and {clothingStats.Count} stat entries.");
     }
 
-    public GameObject SpawnCharacter(int character, Outfit outfit, Transform p)
+    public GameObject SpawnCharacter(int character, Outfit outfit, Transform p, Material customMaterial = null, string layerName = "Characters", string sortingLayerName = "Default")
     {
         GameObject skeletonInstance = Instantiate(skeletonPrefab, p);
         Transform skeletonRoot = skeletonInstance.transform.Find("bone_1");
         Transform clothingRoot = skeletonInstance.transform.Find("Clothing");
         if (character != -1)
         {
-            GameObject body = SpawnBody(character, skeletonRoot);
+            GameObject body = SpawnBody(character, skeletonRoot, customMaterial:customMaterial, layerName:layerName, sortingLayerName:sortingLayerName);
         }
-        SpawnClothing(outfit, clothingRoot, skeletonRoot);
+        SpawnClothing(outfit, clothingRoot, skeletonRoot, customMaterial: customMaterial, layerName: layerName, sortingLayerName: sortingLayerName);
+        SetLayerRecursively(skeletonInstance, sortingLayerName);
         return skeletonInstance;
     }
 
-    public GameObject SpawnBody(int character, Transform skeletonRoot)
+    public GameObject SpawnBody(int character, Transform skeletonRoot, Material customMaterial = null, string layerName = "Characters", string sortingLayerName = "Default")
     {
         GameObject prefab = characters[character];
         if (prefab != null)
@@ -132,18 +143,25 @@ public class ClothingRegistry : MonoBehaviour
             characterObj.transform.localScale = Vector3.one;
             foreach (Transform child in characterObj.transform)
             {
+                child.gameObject.layer = LayerMask.NameToLayer(sortingLayerName);
                 SpriteSkin skin = child.GetComponent<SpriteSkin>();
                 if (skin != null)
                 {
                     skin.SetRootBone(skeletonRoot);
                     skin.enabled = true;
                 }
+                SpriteRenderer renderer = child.GetComponent<SpriteRenderer>();
+                if(renderer != null && customMaterial != null)
+                {
+                    renderer.material = customMaterial;
+                    renderer.sortingLayerName = layerName;
+                }
             }
             return characterObj;
         }
         return null;
     }
-    public void SpawnClothing(Outfit o, Transform clothingRoot, Transform skeletonRoot)
+    public void SpawnClothing(Outfit o, Transform clothingRoot, Transform skeletonRoot, Material customMaterial = null, string layerName = "Characters", string sortingLayerName = "Default")
     {
         foreach (GameObject oldClothing in clothingRoot)
         {
@@ -158,7 +176,7 @@ public class ClothingRegistry : MonoBehaviour
                 thisColor = o.colors[i];
             if (prefab != null)
             {
-
+                prefab.gameObject.layer = LayerMask.NameToLayer(sortingLayerName);
                 // Instantiate clothing and parent to skeleton
                 GameObject clothingObj = Instantiate(prefab, clothingRoot);
                 clothingObj.transform.localPosition = Vector3.zero;
@@ -178,9 +196,13 @@ public class ClothingRegistry : MonoBehaviour
                             if (child.name.Contains(kv.Key))
                             {
                                 renderer.sortingOrder = kv.Value;
-                                renderer.sortingLayerName = "Characters";
+                                renderer.sortingLayerName = layerName;
                                 break;
                             }
+                        }
+                        if(customMaterial != null)
+                        {
+                            renderer.material = customMaterial;
                         }
                     }
                 }
@@ -208,6 +230,8 @@ public class ClothingRegistry : MonoBehaviour
             newStats.name = addStats.name;
             newStats.description = addStats.description;
             newStats.type = addStats.type;
+            newStats.damageTypes = newStats.damageTypes.Concat(addStats.damageTypes).ToArray();
+            newStats.rarity = Mathf.Max(newStats.rarity, addStats.rarity);
         }
         return newStats;
     }
@@ -226,5 +250,14 @@ public class ClothingRegistry : MonoBehaviour
 
         return mySpells;
     }
+
+    void SetLayerRecursively(GameObject obj, string layerName)
+{
+    int layer = LayerMask.NameToLayer(layerName);
+    if (layer == -1) Debug.LogError($"Layer '{layerName}' does not exist!");
+    obj.layer = layer;
+    foreach (Transform child in obj.transform)
+        SetLayerRecursively(child.gameObject, layerName);
+}
 }
 

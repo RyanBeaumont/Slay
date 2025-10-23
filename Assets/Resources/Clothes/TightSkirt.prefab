@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9122065634625103167}
-  m_Layer: 0
+  - component: {fileID: -471222160087015784}
+  m_Layer: 5
   m_Name: TightSkirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +33,31 @@ Transform:
   - {fileID: 831545111995218124}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-471222160087015784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005338413920002029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf516d518a4384429c0d59872c266e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    name: Tight Skirt
+    description: Your perfect hourglass figure brings all the villains to their knees
+    abilityDescription: 
+    hp: 0
+    damage: 1
+    armor: 0
+    bonus: 4
+    cost: 0
+    type: Bottom
+    damageTypes: 
+    rarity: 0
+    attackTriggers: []
 --- !u!1 &4119705005984772063
 GameObject:
   m_ObjectHideFlags: 0

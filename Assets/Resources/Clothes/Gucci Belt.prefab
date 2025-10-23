@@ -118,7 +118,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1984495966403842818}
   - component: {fileID: 3324702688017647591}
-  m_Layer: 0
+  - component: {fileID: -2124275432509924085}
+  m_Layer: 5
   m_Name: Gucci Belt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,10 +157,32 @@ MonoBehaviour:
   stats:
     name: Gucci Belt
     description: 'Swagger: 1000. Fucks: 0'
-    abilityDescription: Grants +1 swagger per turn
+    abilityDescription: '[4] Double your attack power'
     hp: 0
     damage: 0
     armor: 0
     bonus: 0
     cost: 2
+    type: Accessory
+    damageTypes: 
+    rarity: 2
     attackTriggers: []
+--- !u!114 &-2124275432509924085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573252479200084547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Double G
+    description: Double your attack power
+    function: DoubleAttack
+    cost: 4
+    index: 0
+    charges: -1

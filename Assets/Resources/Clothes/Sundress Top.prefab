@@ -119,7 +119,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5288650634437730594}
-  m_Layer: 0
+  - component: {fileID: 5003811321276082122}
+  - component: {fileID: 5482669281033773734}
+  m_Layer: 5
   m_Name: Sundress Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,3 +144,46 @@ Transform:
   - {fileID: 1294302259442007329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5003811321276082122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223836486125458221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf516d518a4384429c0d59872c266e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    name: Summer Top
+    description: Your Saccharine Exterior Hides True Malice
+    abilityDescription: Gift your Swag to an ally
+    hp: 1
+    damage: 0
+    armor: 0
+    bonus: 0
+    cost: 2
+    type: Accessory
+    damageTypes: 01000000
+    rarity: 0
+    attackTriggers: []
+--- !u!114 &5482669281033773734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223836486125458221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: The Gift Of Swag
+    description: Gift your Swag to an ally
+    cost: 0
+    index: 0
+    charges: 3

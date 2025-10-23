@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,6 +17,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
     Vector3 startPos;
     int xx = 0; int yy = 0;
     public int maxActions = 1;
+    public int swag = 0;
     public ClothingStats clothingStats;
     Transform model;
     public CustomAnimator customAnimator;
@@ -26,6 +28,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
     Health health;
     AbilityHandler abilityHandler;
     SpriteRenderer selectedArrow;
+    Transform swagContainer;
     void Awake()//
     {
         model = transform.Find("Model");
@@ -36,6 +39,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
         defenderPos = GameObject.Find("DefenderPosition").transform;
         abilityHandler = GetComponent<AbilityHandler>();
         selectedArrow = transform.Find("SelectedArrow").GetComponent<SpriteRenderer>();
+        swagContainer = transform.Find("SwagContainer");
     }
 
     public void Init(Teammate t)
@@ -86,7 +90,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
     public void ConsumeAction()
     {
         actions--;
-        print($"Actions{actions}");
+        if (actions <= 0) selectedArrow.enabled = false;
     }
 
     public void SetState(PlayerState state)
@@ -116,6 +120,10 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
                 caller = gameObject,
                 dialog = message
             };
+             if(GetComponent<AbilityHandler>() != null)
+                {
+                    GetComponent<AbilityHandler>().HandleDeath();
+                }
 
             GameManager.Instance.gameActions.Add(deathAction);
         }
@@ -127,7 +135,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public IEnumerator Attack(int dice, int bonus, Enemy target, string animationName)
+    public IEnumerator Attack(int dice, int bonus, Enemy target, string animationName, DamageType[] damageTypes, StatusEffect statusEffect)
     {
         GameManager.Instance.Sound("s_dbz_jump", 1);
         GameManager.Instance.runTimer = false;
@@ -145,11 +153,26 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
             var health = target.GetComponentInChildren<Health>();
             if (health == null) { EndAttack(); yield break; }
 
-            if (health.Damage(bonus:bonus))
+            var damageResult = health.Damage(bonus: bonus, damageType: damageTypes);
+            if (damageResult > 0)
             {
                 var anim = target.GetComponent<EnemyAnimator>();
                 if (anim != null)
                     anim.ChangeSprite("Hurt", false, true);
+                if(statusEffect.name != Status.None)
+                    {
+                        var p = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("Powerup"),target.transform.position,Quaternion.identity);
+                        p.GetComponent<Powerup>().target = target.transform;
+                        p.GetComponent<Powerup>().statusEffect = statusEffect;
+                        p.GetComponent<Powerup>().useStatusEffect = true;
+                    }
+            }
+            if(damageResult == 2) //Weakness
+            {
+                actions += 1;
+                var p = Instantiate(Resources.Load<GameObject>("Powerup"),transform.position,Quaternion.identity);
+                p.GetComponent<Powerup>().target = transform;
+                p.GetComponent<Powerup>().swag = 2;
             }
             customAnimator.Play(animationName, 1, fps:8, canLoop:false);
 
@@ -216,7 +239,7 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            health.Damage(guaranteedHit:true);
+            health.Damage(guaranteedHit: true);
         }
         else
         {
@@ -224,6 +247,16 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
             {
                 GameManager.Instance.ShowBattleMenu(this);
             }
+        }
+    }
+    
+    public void AddSwag(int amount)
+    {
+        swag = Mathf.Clamp(swag + amount, 0, 10);
+        foreach (Transform child in swagContainer) Destroy(child.gameObject);
+        for(int i=0; i<swag; i++)
+        {
+            Instantiate(Resources.Load("SwagImage"), swagContainer);
         }
     }
 
@@ -235,19 +268,23 @@ public class SummonModel : MonoBehaviour, IPointerDownHandler
         RestoreColors();
         selectedArrow.enabled = true;
 
+        var p = Instantiate(Resources.Load<GameObject>("Powerup"),transform.position,Quaternion.identity);
+        p.GetComponent<Powerup>().target = transform;
+        p.GetComponent<Powerup>().swag = 1;
+
         //Swag overload
-        /*
+        
         int outfitCost = ClothingRegistry.Instance.GetStats(teammate.equippedOutfit.outfit, teammate.GetBaseStats()).cost;
-        int swagOverload = Math.Abs(outfitCost - teammate.fashionPoints);
+        int swagOverload = Math.Max(0,outfitCost - teammate.fashionPoints);
         if (swagOverload > 0)
         {
             GameManager.Instance.gameActions.Add(new SelfHarmAction()
             {
-                amount = swagOverload,
-                dialog = new string[] {"The power of the outfit... It is too much for you! It lashes out at you as you struggle to contain it"}
+                damage = swagOverload * 10,
+                dialog = new string[] {$"{swagOverload} The power of the outfit... It is too much for you! It lashes out at you as you struggle to contain it"}
             });
         }
-        */
+        
     }
 
 

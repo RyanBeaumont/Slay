@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4548129832137040672}
   - component: {fileID: 8834280587292094545}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bandolier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +54,9 @@ MonoBehaviour:
     armor: 0
     bonus: 0
     cost: 1
+    type: Accessory
+    damageTypes: 00000000
+    rarity: 0
     attackTriggers: []
 --- !u!1 &2056912115870854279
 GameObject:
@@ -130,7 +133,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 38
   m_Sprite: {fileID: 8690284267180367647, guid: 290473864fb96524fa715e417e0f01ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

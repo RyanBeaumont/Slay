@@ -1,16 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public enum Status { AttackBoost, BonusBoost, ArmorBoost }
-public enum DamageType {Physical, Magical, Fire, None}
+public enum Status {None, AttackBoost, BonusBoost, ArmorBoost, Poison}
+public enum DamageType {Hot, Cute, Sassy}
+
 [Serializable]
 public class StatusEffect
 {
     public Status name;
     public int amount;
     public int duration;
+    public bool stack = false;
 }
 
 public class Health : MonoBehaviour
@@ -18,8 +21,8 @@ public class Health : MonoBehaviour
     public ClothingStats stats;
     public int maxHp = 100;
     public int hp = 100;
-    public DamageType weakness = DamageType.None;
-    public DamageType resistance = DamageType.None;
+    public DamageType[] weakness;
+    public DamageType[] resistance;
     public TMP_Text powerText;
     public GameObject heartPrefab;
     public RectTransform heartContainer;
@@ -88,7 +91,25 @@ else
 
     public void AddStatusEffect(StatusEffect s)
     {
+        if (s.stack)
+        {
+            foreach (StatusEffect effect in statusEffects)
+            {
+                if (effect.name == s.name)
+                {
+                    effect.amount += s.amount;
+                    UpdateDisplay();
+                    return;
+                }
+            }
+        }
         statusEffects.Add(s);
+        UpdateDisplay();
+    }
+    
+    public void ClearStatusEffects()
+    {
+        statusEffects.Clear();
         UpdateDisplay();
     }
 
@@ -104,6 +125,16 @@ else
                 {
                     statusEffects.RemoveAt(i);
                 }
+            }
+            if(effect.name == Status.Poison){
+                GameAction poison = new SelfHarmAction()
+                {
+                    damage = effect.amount * 5,
+                    dialog = new string[] { $"You take {effect.amount * 5} poison damage" }
+                };
+                GameManager.Instance.gameActions.Add(poison);
+                effect.amount -= 1;
+                if (effect.amount <= 0) statusEffects.RemoveAt(i);
             }
         }
         UpdateDisplay();
@@ -123,26 +154,34 @@ else
     }
 
 
-    public bool Damage(int damagePerHit = 10, bool guaranteedHit = false, int bonus = 0, DamageType damageType = DamageType.Physical)
+    public int Damage(int damagePerHit = 10, bool guaranteedHit = false, int bonus = 0, DamageType[] damageType = null)
     {
+        damageType ??= System.Array.Empty<DamageType>();
         GameObject prompt = Instantiate(Resources.Load<GameObject>("HitPrompt"), transform.position, Quaternion.identity);
         TMP_Text text = prompt.GetComponentInChildren<TMP_Text>();
         int roll = UnityEngine.Random.Range(1, 13);
         text.color = Color.magenta;
+        bool weakCrit = false;
         if (roll + bonus >= stats.armor || guaranteedHit == true)
         {
-            if (roll >= 11 && damageType == weakness && weakness != DamageType.None)
+            if (roll >= 11)
             {
                 text.text = "TO THE NUTS!";
                 text.color = Color.yellow;
-                hp -= Mathf.RoundToInt((float)damagePerHit * 1.5f); GetComponentInChildren<Shaker>().Shake(0.3f);
+                hp -= Mathf.RoundToInt((float)damagePerHit * 1.25f); GetComponentInChildren<Shaker>().Shake(0.3f);
                 GameManager.Instance.swag += 1;
+                if(weakness.Any(item => damageType.Contains(item)))
+                {
+                    text.text = "Super Effective!";
+                    weakCrit = true;
+                }
             } //Critical
             else
             {
-                if (resistance == damageType)
+                if (resistance.Any(item => damageType.Contains(item))) //If any damage types are resistant, reduce damage
                 {
-                    hp -= (int)(damagePerHit/2);
+                    hp -= (int)(damagePerHit / 2);
+                    text.text += " - Weak";
                 }
                 else
                 {
@@ -165,25 +204,27 @@ else
 
             if (hp <= 0)
             {
-                AbilityHandler abilityHandler = GetComponentInParent<AbilityHandler>();
-                if (abilityHandler)
+                Enemy enemy = GetComponentInParent<Enemy>();
+                if (enemy != null)
                 {
-                    abilityHandler.HandleDeath();
+                    enemy.Die();
                 }
                 if (summonModel != null && summonModel.playerState != PlayerState.Dead)
                 {
                     print("KILLING PLAYER");
                     summonModel.SetState(PlayerState.Dead);
                 }
-                Enemy enemy = GetComponentInParent<Enemy>();
-                if (enemy != null)
+                AbilityHandler abilityHandler = GetComponentInParent<AbilityHandler>();
+                if (abilityHandler)
                 {
-                    enemy.Die();
+                    abilityHandler.HandleDeath();
                 }
+                
+                
 
             }
             UpdateDisplay();
-            return true;
+            if (weakCrit) return 2; else return 1;
         }
         else
         {
@@ -192,6 +233,6 @@ else
             text.text = prompts[UnityEngine.Random.Range(0, prompts.Length)];
             GameManager.Instance.Sound("s_miss", UnityEngine.Random.Range(0.8f, 1.2f));
         }
-        return false;
+        return 0;
     }
 }

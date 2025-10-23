@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 4
   m_Sprite: {fileID: 1263364722334931446, guid: 91fdb963e52f6e240bb7af522cc5329a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -185,7 +185,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 8
   m_Sprite: {fileID: 4396744315997237002, guid: 91fdb963e52f6e240bb7af522cc5329a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -230,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8988289865509027228}
   - component: {fileID: 8460227379638990351}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Leggings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,6 +275,9 @@ MonoBehaviour:
     armor: 0
     bonus: 0
     cost: 1
+    type: Accessory
+    damageTypes: 
+    rarity: 0
     attackTriggers:
     - trigger: 0
       attackFunction: Heal

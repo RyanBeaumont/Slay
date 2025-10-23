@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3798263017862443746}
   - component: {fileID: 1108231393560825579}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UGG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,13 +49,18 @@ MonoBehaviour:
   stats:
     name: Boots with the Fur
     description: They're So Comfy!
-    abilityDescription: 
-    hp: 2
+    abilityDescription: Power Up your Basic Bitch Attack Every Turn
+    hp: 1
     damage: 0
-    armor: 2
+    armor: 0
     bonus: 0
-    cost: 4
-    attackTriggers: []
+    cost: 2
+    type: Accessory
+    damageTypes: 01000000
+    rarity: 0
+    attackTriggers:
+    - trigger: 0
+      attackFunction: UGG
 --- !u!1 &1773862722557236593
 GameObject:
   m_ObjectHideFlags: 0

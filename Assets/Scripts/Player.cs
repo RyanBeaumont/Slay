@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
         {Destroy(child.gameObject);}
         body = ClothingRegistry.Instance.SpawnCharacter(teammate.index, thisOutfit, transform.Find("Character"));
         body.transform.localScale = new Vector3(scale, scale, scale);
+        ChangeMaterials(Resources.Load<Material>("CharacterMaterial"));
         customAnimator = body.GetComponent<CustomAnimator>();
         customAnimator.Play("Skeleton_Walk", 0, canAutoUpdate: false, canLoop: true, fps: 8);
     }
@@ -28,16 +29,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Walk()
-    {
-        customAnimator.autoUpdate = true;
-        GetComponent<BoxCollider>().enabled = false;
-    }
+
 
     public void EndWalk()
     {
         customAnimator.autoUpdate = false;
         GetComponent<BoxCollider>().enabled = true;
+    }
+    public void Walk()
+    {
+        customAnimator.autoUpdate = true;
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     public void Climb()

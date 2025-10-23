@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4297679495493196055}
   - component: {fileID: 1628349526918218421}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Gloves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,13 +159,18 @@ MonoBehaviour:
   stats:
     name: Murder Gloves
     description: So you don't have to touch the dead bodies, of course
-    abilityDescription: '[2] Murder: Roll 5 dice'
+    abilityDescription: Gain power when any character dies
     hp: 0
     damage: 0
     armor: 0
     bonus: 0
     cost: 1
-    attackTriggers: []
+    type: Accessory
+    damageTypes: 02000000
+    rarity: 1
+    attackTriggers:
+    - trigger: 4
+      attackFunction: MurderGloves
 --- !u!1 &7321226836393850159
 GameObject:
   m_ObjectHideFlags: 0

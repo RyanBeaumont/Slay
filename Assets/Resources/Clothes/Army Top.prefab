@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 46
   m_Sprite: {fileID: -3162682677349943975, guid: 290473864fb96524fa715e417e0f01ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7953907514427166108}
   - component: {fileID: -4069457436554532105}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Army Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,11 +157,13 @@ MonoBehaviour:
   stats:
     name: Army Top
     description: Drop And Give Me Twenty
-    abilityDescription: +4 Accuracy
+    abilityDescription: 
     hp: 0
-    damage: 0
+    damage: 1
     armor: 0
     bonus: 4
     cost: 2
     type: Top
+    damageTypes: 00000000
+    rarity: 1
     attackTriggers: []

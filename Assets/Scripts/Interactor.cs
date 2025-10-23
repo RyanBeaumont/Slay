@@ -64,7 +64,7 @@ public class PlayerInteractor : MonoBehaviour
         foreach (var hit in hits)
         {
             var interactable = hit.GetComponent<ChainedInteractable>();
-            if (interactable != null && interactable.active)
+            if (interactable != null && interactable.active && interactable.GetComponent<TriggerInteractable>() == null)
             {
                 float dist = Vector3.Distance(transform.position, hit.transform.position);
                 if (dist < closest)

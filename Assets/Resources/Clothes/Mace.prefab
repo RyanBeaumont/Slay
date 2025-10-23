@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9005178937849990412}
   - component: {fileID: 4089520586768039867}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Mace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,11 +49,14 @@ MonoBehaviour:
     name: Angry Max
     description: You got this at Burning Man
     abilityDescription: 
-    hp: 0
+    hp: 1
     damage: 0
-    armor: 2
+    armor: 0
     bonus: 0
     cost: 1
+    type: Accessory
+    damageTypes: 
+    rarity: 0
     attackTriggers: []
 --- !u!1 &2006221844019503648
 GameObject:

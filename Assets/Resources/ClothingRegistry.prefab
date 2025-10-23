@@ -98,25 +98,5 @@ MonoBehaviour:
   - {fileID: 5553818024347222673, guid: 6a36b35a4d2cb394ba07c29ab65e887d, type: 3}
   - {fileID: 4739462393692901172, guid: 7b648b395e59a1441bb49d690e1e9e0a, type: 3}
   - {fileID: 7127981680169032978, guid: f838cf7e50ccaa041898ee62c5806101, type: 3}
-  spells:
-  - name: Gun Heels
-    description: Roll 5 Attack Dice
-    cost: 0
-    index: 12
-    charges: 1
-  - name: Murder Kick
-    description: Deal 1 Damage and Lower Armor by 4
-    cost: 2
-    index: 9
-    charges: -1
-  - name: Hair Sword
-    description: Consume all Swagger and deal damage based on amount
-    cost: 1
-    index: 10
-    charges: -1
-  - name: Kickin Jeans
-    description: Deal 2 Accurate Hits
-    cost: 2
-    index: 15
-    charges: -1
+  spells: []
   skeletonPrefab: {fileID: 2052964628962190378, guid: a2a81b44afb4e70458409d50d28e845a, type: 3}

@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -38,7 +39,7 @@ public class UIClothing : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             outfit = new int[] { index },
             colors = new Color[] {defaultColor}
         };
-        GameObject body = ClothingRegistry.Instance.SpawnCharacter(0, o, root);
+        GameObject body = ClothingRegistry.Instance.SpawnCharacter(0, o, root,sortingLayerName:"UI");
         stats = ClothingRegistry.Instance.GetStats(new int[] { index }, new ClothingStats());
         costText.text = $"{stats.cost}";
         foreach (SpriteRenderer sr in body.GetComponentsInChildren<SpriteRenderer>(includeInactive: true))
@@ -47,12 +48,22 @@ public class UIClothing : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
         foreach (SpriteRenderer sr in body.transform.Find("Ella(Clone)").GetComponentsInChildren<SpriteRenderer>(includeInactive: true))
         {
-            sr.color = Color.black;
+            sr.color = new Color(0,0,0,0.2f);
         }
         if (count > 1)
             countText.text = $"x{count}";
         else countText.text = "";
 
+        if (stats.rarity == 1) transform.GetComponent<Outline>().effectColor = Color.cyan;
+        if (stats.rarity == 2) transform.GetComponent<Outline>().effectColor = Color.yellow;
+        var bgImg = transform.GetComponent<Image>();
+        if (stats.damageTypes != null)
+        {
+            bgImg.color = new Color(1, 0.9f, 0.9f);
+            if (stats.damageTypes.Contains(DamageType.Hot)) bgImg.color = new Color(bgImg.color.r, bgImg.color.g - 0.2f, bgImg.color.b - 0.2f);
+            if (stats.damageTypes.Contains(DamageType.Cute)) bgImg.color = new Color(bgImg.color.r - 0.2f, bgImg.color.g, bgImg.color.b - 0.2f);
+            if (stats.damageTypes.Contains(DamageType.Sassy)) bgImg.color = new Color(bgImg.color.r - 0.2f, bgImg.color.g - 0.2f, bgImg.color.b);
+        }
         body.transform.localScale = new Vector3(50f, 50f, 50f);
     }
 

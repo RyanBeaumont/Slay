@@ -225,7 +225,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5626695195071463870}
-  m_Layer: 0
+  - component: {fileID: -390184291455678137}
+  - component: {fileID: -1089851294007859597}
+  m_Layer: 5
   m_Name: Stiletto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,3 +251,47 @@ Transform:
   - {fileID: 9184354472205172554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-390184291455678137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6147130696247701175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf516d518a4384429c0d59872c266e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    name: Stiletto Heels
+    description: You are sexy, impulsive, volatile. No one can predict your next
+      move
+    abilityDescription: '[4] Deal 5 hits randomly'
+    hp: 0
+    damage: 1
+    armor: 0
+    bonus: 0
+    cost: 2
+    type: Shoes
+    damageTypes: 00000000
+    rarity: 0
+    attackTriggers: []
+--- !u!114 &-1089851294007859597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6147130696247701175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Stiletto Strike
+    description: Deal 5 hits randomly
+    cost: 4
+    index: 0
+    charges: -1

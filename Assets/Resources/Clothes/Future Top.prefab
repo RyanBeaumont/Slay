@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3908222626856058715}
+  - component: {fileID: -6034978548810569903}
+  - component: {fileID: 6888478819239547340}
   m_Layer: 0
   m_Name: Future Top
   m_TagString: Untagged
@@ -32,6 +34,50 @@ Transform:
   - {fileID: 5729873638227278843}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6034978548810569903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173714138746653300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf516d518a4384429c0d59872c266e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    name: Reflective Top
+    description: The reflective Mylar amplifies your Chi
+    abilityDescription: Release a wave that deals 2 hits to ALL characters
+    hp: 0
+    damage: 0
+    armor: 0
+    bonus: 0
+    cost: 1
+    type: Top
+    damageTypes: 00000000
+    rarity: 1
+    attackTriggers: []
+--- !u!114 &6888478819239547340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173714138746653300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Kamehameha
+    description: Deal 2 hits to EVERYTHING
+    function: Kamehameha
+    cost: 0
+    index: 21
+    charges: 0
 --- !u!1 &829954024055114599
 GameObject:
   m_ObjectHideFlags: 0

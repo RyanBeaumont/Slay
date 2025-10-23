@@ -118,7 +118,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5640993865439955355}
   - component: {fileID: 2362464526388721777}
-  m_Layer: 0
+  - component: {fileID: -3928644568261806827}
+  m_Layer: 5
   m_Name: JewelNecklace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,10 +157,32 @@ MonoBehaviour:
   stats:
     name: Magical Amulet
     description: Glowing with mysterious power!
-    abilityDescription: 
+    abilityDescription: '1x Use: Gain an Extra Turn'
     hp: 0
     damage: 0
     armor: 0
     bonus: 0
-    cost: 0
+    cost: 1
+    type: Accessory
+    damageTypes: 
+    rarity: 2
     attackTriggers: []
+--- !u!114 &-3928644568261806827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5664538649441634911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Magical Amulet
+    description: Gain an Extra Turn
+    function: Amulet
+    cost: 0
+    index: 0
+    charges: 1

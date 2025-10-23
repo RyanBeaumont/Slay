@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 4
   m_Sprite: {fileID: -3591682343865925993, guid: 91fdb963e52f6e240bb7af522cc5329a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -118,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1204703240532421478}
   - component: {fileID: 5654954758918856476}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Hot pants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,13 +157,15 @@ MonoBehaviour:
   stats:
     name: Hot Pants
     description: Knockout Ass Blows Enemies Away
-    abilityDescription: Immediately roll 2 dice
+    abilityDescription: Immediately deal 2 hits
     hp: 0
     damage: 1
     armor: 0
     bonus: 0
     cost: 2
     type: Bottom
+    damageTypes: 
+    rarity: 0
     attackTriggers:
     - trigger: 1
       attackFunction: HotPants
@@ -242,7 +244,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 8
   m_Sprite: {fileID: -2238198290755267776, guid: 91fdb963e52f6e240bb7af522cc5329a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

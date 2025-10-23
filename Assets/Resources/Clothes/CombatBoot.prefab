@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2949360023337364442}
   - component: {fileID: 1796939038529174366}
-  m_Layer: 0
+  - component: {fileID: 4097505781878743906}
+  m_Layer: 5
   m_Name: CombatBoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,15 +49,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     name: Combat Boots
-    description: Badass Murder Kick Reduces Enemy Armor
-    abilityDescription: '[2] Deal 1 Hot Damage and reduce armor by 4'
+    description: Guns in the heels!
+    abilityDescription: One-Time Huge Attack
     hp: 0
     damage: 1
     armor: 0
     bonus: 0
     cost: 2
     type: Shoes
+    damageTypes: 
+    rarity: 0
     attackTriggers: []
+--- !u!114 &4097505781878743906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052184266617046248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Gun Boots
+    description: One-Time Huge Attack
+    function: GunBoots
+    cost: 0
+    index: 0
+    charges: 1
 --- !u!1 &6009909940313759295
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +154,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 55
   m_Sprite: {fileID: 258523173457517230, guid: 290473864fb96524fa715e417e0f01ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -241,7 +263,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 54
   m_Sprite: {fileID: -6146468578130366081, guid: 290473864fb96524fa715e417e0f01ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

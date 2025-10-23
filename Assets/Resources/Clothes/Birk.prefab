@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5908689261581129486}
   - component: {fileID: 6712604482709362780}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Birk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,6 +56,8 @@ MonoBehaviour:
     bonus: 0
     cost: 2
     type: Shoes
+    damageTypes: 02000000
+    rarity: 0
     attackTriggers:
     - trigger: 0
       attackFunction: Borks

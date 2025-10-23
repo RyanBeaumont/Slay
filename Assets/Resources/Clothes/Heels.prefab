@@ -228,7 +228,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1851383547880844107}
   - component: {fileID: 326425584116921432}
-  m_Layer: 0
+  - component: {fileID: 7382797592667263691}
+  m_Layer: 5
   m_Name: Heels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,11 +268,32 @@ MonoBehaviour:
   stats:
     name: Medium Heels
     description: I wish I was 3 inches taller... I wish I was a baller
-    abilityDescription: 
+    abilityDescription: '[2] Impale the enemy with a guaranteed hit that reduces
+      armor'
     hp: 0
     damage: 1
     armor: 0
-    bonus: 1
+    bonus: 0
     cost: 2
     type: Shoes
+    damageTypes: 02000000
+    rarity: 0
     attackTriggers: []
+--- !u!114 &7382797592667263691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9215104340111119048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e873ae08b3dd26b419390df51d28b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell:
+    name: Impale
+    description: Deal 1 guaranteed hit and reduce armor by 4
+    cost: 2
+    index: 0
+    charges: -1

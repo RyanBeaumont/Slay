@@ -14,7 +14,7 @@ public abstract class ChainedInteractable : PersistentObject, IInteractable
         return $"{FormatName(gameObject.name)}";
     }
 
-    protected void CallNext()
+    public void CallNext()
     {
         if (!blockInteraction && active)
         {
@@ -23,8 +23,9 @@ public abstract class ChainedInteractable : PersistentObject, IInteractable
         }
     }
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         // auto-find the next interactable in chain
         var interactables = GetComponents<IInteractable>();
         int thisIndex = System.Array.IndexOf(interactables, this);

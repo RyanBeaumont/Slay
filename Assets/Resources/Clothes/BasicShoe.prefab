@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 51
   m_Sprite: {fileID: -7504125560293101409, guid: 290473864fb96524fa715e417e0f01ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -164,6 +164,8 @@ MonoBehaviour:
     bonus: 0
     cost: 0
     type: Shoes
+    damageTypes: 
+    rarity: 0
     attackTriggers: []
 --- !u!1 &4596964425342133511
 GameObject:
@@ -240,7 +242,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2134090657
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 52
   m_Sprite: {fileID: -175877173217446185, guid: 290473864fb96524fa715e417e0f01ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
